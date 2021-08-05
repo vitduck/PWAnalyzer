@@ -1,0 +1,128 @@
+ACTIONS REPORT
+
+  FUNCTION BEGIN at ./hotspot.cpp:get_time:7:1
+    7: long long get_time()
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./hotspot.cpp:single_iteration:54:1
+    54: void single_iteration(FLOAT *result, FLOAT *temp, FLOAT *power, int row, int col,
+
+    LOOP BEGIN at ./hotspot.cpp:single_iteration:71:5
+      71:     for ( chunk = 0; chunk < num_chunk; ++chunk )
+
+      LOOP BEGIN at ./hotspot.cpp:single_iteration:80:13
+        80:             for ( r = r_start; r < r_start + BLOCK_SIZE_R; ++r ) {
+
+        LOOP BEGIN at ./hotspot.cpp:single_iteration:81:17
+          81:                 for ( c = c_start; c < c_start + BLOCK_SIZE_C; ++c ) {
+
+          [PWR022] ./hotspot.cpp:119:26 move invariant conditional out of the loop to facilitate vectorization
+          [PWR022] ./hotspot.cpp:107:26 move invariant conditional out of the loop to facilitate vectorization
+        LOOP END
+        [PWR002] ./hotspot.cpp:59:12 'c' not declared in the innermost scope possible
+      LOOP END
+
+      LOOP BEGIN at ./hotspot.cpp:single_iteration:137:9
+        137:         for ( r = r_start; r < r_start + BLOCK_SIZE_R; ++r ) {
+
+        LOOP BEGIN at ./hotspot.cpp:single_iteration:139:13
+          139:             for ( c = c_start; c < c_start + BLOCK_SIZE_C; ++c ) {
+
+          [PWR023] ./hotspot.cpp:139:13 Potential alias of function parameters 'temp', 'power', 'result' may prevent loop vectorization
+
+          [OPP001] ./hotspot.cpp:139:13 is a multi-threading opportunity
+          [OPP002] ./hotspot.cpp:139:13 is a SIMD opportunity
+          [OPP003] ./hotspot.cpp:139:13 is a offload opportunity
+        LOOP END
+        [PWR002] ./hotspot.cpp:59:12 'c' not declared in the innermost scope possible
+      LOOP END
+      [PWR002] ./hotspot.cpp:59:12 'c' not declared in the innermost scope possible
+      [PWR002] ./hotspot.cpp:59:9 'r' not declared in the innermost scope possible
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./hotspot.cpp:compute_tran_temp:159:1
+    159: void compute_tran_temp(FLOAT *result, int num_iterations, FLOAT *temp, FLOAT *power, int row, int col) 
+
+    LOOP BEGIN at ./hotspot.cpp:compute_tran_temp:195:13
+      195:             for (int i = 0; i < num_iterations ; i++)
+
+      201:24: [ ERROR ] unsupported pointer assignment for variable 'tmp'
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./hotspot.cpp:fatal:211:1
+    211: void fatal(char *s)
+
+    [PWR001] ./hotspot.cpp:211:1 function 'fatal' uses global variable 'stderr'
+  FUNCTION END
+
+  FUNCTION BEGIN at ./hotspot.cpp:writeoutput:217:1
+    217: void writeoutput(FLOAT *vect, int grid_rows, int grid_cols, char *file) {
+
+    LOOP BEGIN at ./hotspot.cpp:writeoutput:227:5
+      227:     for (i=0; i < grid_rows; i++) 
+
+      231:13: [ ERROR ] unsupported use of literal data
+      LOOP BEGIN at ./hotspot.cpp:writeoutput:228:9
+        228:         for (j=0; j < grid_cols; j++)
+
+        231:13: [ ERROR ] unsupported use of literal data
+      LOOP END
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./hotspot.cpp:read_input:239:1
+    239: void read_input(FLOAT *vect, int grid_rows, int grid_cols, char *file)
+
+    LOOP BEGIN at ./hotspot.cpp:read_input:250:2
+      250: 	for (i=0; i < grid_rows * grid_cols; i++) {
+
+      253:4: [ ERROR ] unsupported use of literal data
+      254:8: [ ERROR ] unsupported use of literal data
+      255:4: [ ERROR ] unsupported use of literal data
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./hotspot.cpp:usage:262:1
+    262: void usage(int argc, char **argv)
+
+    [PWR001] ./hotspot.cpp:262:1 function 'usage' uses global variable 'stderr'
+  FUNCTION END
+
+  FUNCTION BEGIN at ./hotspot.cpp:main:275:1
+    275: int main(int argc, char **argv)
+
+    [PWR001] ./hotspot.cpp:275:1 function 'main' uses global variable 'num_omp_threads'
+  FUNCTION END
+
+CODE COVERAGE
+  Analyzable files:            1 / 1     (100.00 %)
+  Analyzable functions:        1 / 8     ( 12.50 %)
+  Analyzable loops:            5 / 9     ( 55.56 %)
+  Parallelized SLOCs:          0 / 264   (  0.00 %)
+
+METRICS SUMMARY
+  Total defects:                 0
+  Total recommendations:        10
+  Total remarks:                 0
+  Total opportunities:           3
+  Total data races:              0
+  Total data-race-free:          0
+
+SUGGESTIONS
+
+  4 loops could not be analyzed, get more information with pwloops:
+        pwloops --non-analyzable .
+
+  10 recommendations were found in your code, get more information with pwcheck:
+        pwcheck --only-recommendations .
+
+  3 opportunities for parallelization were found in your code, get more information with pwloops:
+        pwloops .
+
+  You can control the level of detail using --level 1|2|3:
+        pwreport --summary --detail --level 3 .
+
+1 file successfully analyzed and 0 failures in 141 ms

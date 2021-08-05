@@ -1,0 +1,48 @@
+[ INFO  ] ./backprop.c:111:2: Parallel forall: variable 'w'
+[ INFO  ] ./backprop.c:124:3: Parallel forall: variable 'w'
+[ INFO  ] ./backprop.c:125:5: Parallel forall: variable 'w'
+[ INFO  ] ./backprop.c:249:3: Parallel forall: variable 'l2'
+[ INFO  ] ./backprop.c:253:5: Parallel scalar reduction pattern identified for variable 'sum' with associative, commutative operator '+'
+[ INFO  ] ./backprop.c:268:3: Sequential loop identified
+[ INFO  ] ./backprop.c:268:3: Parallel forall: variable 'delta'
+[ INFO  ] ./backprop.c:268:3: Loop-carried dependencies inhibit parallelization: variable(s) 'errsum'
+[ INFO  ] ./backprop.c:292:3: Sequential loop identified
+[ INFO  ] ./backprop.c:292:3: Parallel forall: variable 'delta_h'
+[ INFO  ] ./backprop.c:292:3: Loop-carried dependencies inhibit parallelization: variable(s) 'errsum'
+[ INFO  ] ./backprop.c:295:5: Parallel scalar reduction pattern identified for variable 'sum' with associative, commutative operator '+'
+[ INFO  ] ./backprop.c:321:3: Sequential loop identified
+[ INFO  ] ./backprop.c:321:3: Loop-carried dependencies inhibit parallelization: variable(s) 'oldw'
+[ INFO  ] ./backprop.c:322:5: Sequential loop identified
+[ INFO  ] ./backprop.c:322:5: Loop-carried dependencies inhibit parallelization: variable(s) 'oldw'
+Loop                              Analyzable Compute patterns Opportunity          Auto-Parallelizable Parallelized
+--------------------------------- ---------- ---------------- -------------------- ------------------- ------------
+./backprop.c
+|- alloc_2d_dbl:84:3
+|- bpnn_randomize_weights:98:3
+|  `- bpnn_randomize_weights:99:5
+|- bpnn_randomize_row:111:2        x         forall           simd, multi, offload  x
+|- bpnn_zero_weights:124:3         x         forall           multi, offload        x
+|  `- bpnn_zero_weights:125:5      x         forall           simd                  x
+|- bpnn_free:187:3
+|- bpnn_free:194:3
+|- bpnn_layerforward:249:3         x         forall           multi, offload        x
+|  `- bpnn_layerforward:253:5      x         scalar           simd                  x
+|- bpnn_output_error:268:3         x         forall, n/a
+|- bpnn_hidden_error:292:3         x         forall, n/a
+|  `- bpnn_hidden_error:295:5      x         scalar           simd, multi, offload  x
+|- bpnn_adjust_weights:321:3       x         n/a
+|  `- bpnn_adjust_weights:322:5    x         n/a
+|- bpnn_save:420:3
+|  `- bpnn_save:421:5
+|     `- bpnn_save:423:7
+|- bpnn_save:434:3
+|  `- bpnn_save:435:5
+|     `- bpnn_save:437:7
+|- bpnn_read:474:3
+|  `- bpnn_read:475:5
+|     `- bpnn_read:476:7
+`- bpnn_read:487:3
+   `- bpnn_read:488:5
+      `- bpnn_read:489:7
+./imagenet.c
+`- load:20:3

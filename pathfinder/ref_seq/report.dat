@@ -1,0 +1,57 @@
+ACTIONS REPORT
+
+  FUNCTION BEGIN at pathfinder.cpp:init:23:1
+    23: void
+
+    LOOP BEGIN at pathfinder.cpp:init:35:2
+      35: 	for(int n=0; n<rows; n++)
+
+      36:10: [ ERROR ] unsupported pointer assignment for variable 'wall'
+    LOOP END
+
+    LOOP BEGIN at pathfinder.cpp:init:42:2
+      42: 	for (int i = 0; i < rows; i++)
+
+      46:26: [ ERROR ] no definition found for function 'rand'
+      LOOP BEGIN at pathfinder.cpp:init:44:9
+        44:         for (int j = 0; j < cols; j++)
+
+        46:26: [ ERROR ] no definition found for function 'rand'
+      LOOP END
+    LOOP END
+
+    LOOP BEGIN at pathfinder.cpp:init:49:5
+      49:     for (int j = 0; j < cols; j++)
+
+      [PWR001] pathfinder.cpp:23:1 function 'init' uses global variables 'cols', 'result', 'wall'
+
+      [OPP001] pathfinder.cpp:49:5 is a multi-threading opportunity
+      [OPP002] pathfinder.cpp:49:5 is a SIMD opportunity
+      [OPP003] pathfinder.cpp:49:5 is a offload opportunity
+    LOOP END
+    [PWR001] pathfinder.cpp:23:1 function 'init' uses global variables 'cols', 'rows', 'data', 'wall', 'result'
+  FUNCTION END
+
+CODE COVERAGE
+  Analyzable files:            1 / 1     (100.00 %)
+  Analyzable functions:        1 / 1     (100.00 %)
+  Analyzable loops:            1 / 4     ( 25.00 %)
+  Parallelized SLOCs:          0 / 37    (  0.00 %)
+
+METRICS SUMMARY
+  Total defects:                 0
+  Total recommendations:         5
+  Total remarks:                 0
+  Total opportunities:           3
+  Total data races:              0
+  Total data-race-free:          0
+
+SUGGESTIONS
+
+  Use --level 1|2|3 to get more details, e.g:
+        pwreport --level 3 pathfinder.cpp:init
+
+  If you want to get an overview of your whole codebase, not only the hotspot, you can use:
+        pwreport --summary .
+
+1 file successfully analyzed and 0 failures in 68 ms

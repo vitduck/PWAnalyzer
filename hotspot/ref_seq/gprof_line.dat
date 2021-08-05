@@ -1,0 +1,15 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+ 33.38      0.02     0.02                             single_iteration(float*, float*, float*, int, int, float, float, float, float, float) (hotspot.cpp:144 @ 40172a)
+ 16.69      0.03     0.01                             read_input(float*, int, int, char*) (hotspot.cpp:252 @ 401bd2)
+ 16.69      0.04     0.01                             read_input(float*, int, int, char*) (hotspot.cpp:256 @ 401c25)
+ 16.69      0.05     0.01                             single_iteration(float*, float*, float*, int, int, float, float, float, float, float) (hotspot.cpp:139 @ 401648)
+ 16.69      0.06     0.01                             single_iteration(float*, float*, float*, int, int, float, float, float, float, float) (hotspot.cpp:142 @ 401680)
+  0.00      0.06     0.00        2     0.00     0.00  read_input(float*, int, int, char*) (hotspot.cpp:240 @ 401b4a)
+  0.00      0.06     0.00        2     0.00     0.00  single_iteration(float*, float*, float*, int, int, float, float, float, float, float) (hotspot.cpp:57 @ 400b94)
+  0.00      0.06     0.00        2     0.00     0.00  get_time() (hotspot.cpp:8 @ 400b62)
+  0.00      0.06     0.00        1     0.00     0.00  writeoutput(float*, int, int, char*) (hotspot.cpp:217 @ 401a42)
+  0.00      0.06     0.00        1     0.00     0.00  compute_tran_temp(float*, int, float*, float*, int, int) (hotspot.cpp:160 @ 401839)

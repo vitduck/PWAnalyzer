@@ -1,0 +1,119 @@
+ACTIONS REPORT
+
+  FUNCTION BEGIN at needle.cpp:nw_optimized:103:1
+    103: void nw_optimized(int *input_itemsets, int *output_itemsets, int *referrence,
+
+    LOOP BEGIN at needle.cpp:nw_optimized:113:5
+      113:     for( int blk = 1; blk <= (max_cols-1)/BLOCK_SIZE; blk++ )
+
+      LOOP BEGIN at needle.cpp:nw_optimized:118:9
+        118:         for( int b_index_x = 0; b_index_x < blk; ++b_index_x)
+
+        LOOP BEGIN at needle.cpp:nw_optimized:125:13
+          125:             for ( int i = 0; i < BLOCK_SIZE; ++i )
+
+          LOOP BEGIN at needle.cpp:nw_optimized:128:17
+            128:                 for ( int j = 0; j < BLOCK_SIZE; ++j)
+
+          LOOP END
+        LOOP END
+
+        LOOP BEGIN at needle.cpp:nw_optimized:135:13
+          135:             for ( int i = 0; i < BLOCK_SIZE + 1; ++i )
+
+          LOOP BEGIN at needle.cpp:nw_optimized:138:17
+            138:                 for ( int j = 0; j < BLOCK_SIZE + 1; ++j)
+
+          LOOP END
+        LOOP END
+
+        LOOP BEGIN at needle.cpp:nw_optimized:145:13
+          145:             for ( int i = 1; i < BLOCK_SIZE + 1; ++i )
+
+          LOOP BEGIN at needle.cpp:nw_optimized:147:17
+            147:                 for ( int j = 1; j < BLOCK_SIZE + 1; ++j)
+
+          LOOP END
+        LOOP END
+
+        LOOP BEGIN at needle.cpp:nw_optimized:156:13
+          156:             for ( int i = 0; i < BLOCK_SIZE; ++i )
+
+          LOOP BEGIN at needle.cpp:nw_optimized:159:17
+            159:                 for ( int j = 0; j < BLOCK_SIZE; ++j)
+
+          LOOP END
+        LOOP END
+        [PWR005] needle.cpp:116:1 OpenMP directive missing 'default(none)' clause
+      LOOP END
+    LOOP END
+
+    LOOP BEGIN at needle.cpp:nw_optimized:173:5
+      173:     for ( int blk = 2; blk <= (max_cols-1)/BLOCK_SIZE; blk++ )
+
+      LOOP BEGIN at needle.cpp:nw_optimized:178:9
+        178:         for( int b_index_x = blk - 1; b_index_x < (max_cols-1)/BLOCK_SIZE; ++b_index_x)
+
+        LOOP BEGIN at needle.cpp:nw_optimized:186:13
+          186:             for ( int i = 0; i < BLOCK_SIZE; ++i )
+
+          LOOP BEGIN at needle.cpp:nw_optimized:189:17
+            189:                 for ( int j = 0; j < BLOCK_SIZE; ++j)
+
+          LOOP END
+        LOOP END
+
+        LOOP BEGIN at needle.cpp:nw_optimized:196:13
+          196:             for ( int i = 0; i < BLOCK_SIZE + 1; ++i )
+
+          LOOP BEGIN at needle.cpp:nw_optimized:199:17
+            199:                 for ( int j = 0; j < BLOCK_SIZE + 1; ++j)
+
+          LOOP END
+        LOOP END
+
+        LOOP BEGIN at needle.cpp:nw_optimized:206:13
+          206:             for ( int i = 1; i < BLOCK_SIZE + 1; ++i )
+
+          LOOP BEGIN at needle.cpp:nw_optimized:208:17
+            208:                 for ( int j = 1; j < BLOCK_SIZE + 1; ++j)
+
+          LOOP END
+        LOOP END
+
+        LOOP BEGIN at needle.cpp:nw_optimized:217:13
+          217:             for ( int i = 0; i < BLOCK_SIZE; ++i )
+
+          LOOP BEGIN at needle.cpp:nw_optimized:220:17
+            220:                 for ( int j = 0; j < BLOCK_SIZE; ++j)
+
+          LOOP END
+        LOOP END
+        [PWR005] needle.cpp:176:1 OpenMP directive missing 'default(none)' clause
+      LOOP END
+    LOOP END
+  FUNCTION END
+
+CODE COVERAGE
+  Analyzable files:            1 / 1     (100.00 %)
+  Analyzable functions:        1 / 1     (100.00 %)
+  Analyzable loops:           20 / 20    (100.00 %)
+  Parallelized SLOCs:        100 / 128   ( 78.12 %)
+
+METRICS SUMMARY
+  Total defects:                 0
+  Total recommendations:         2
+  Total remarks:                 0
+  Total opportunities:           0
+  Total data races:              0
+  Total data-race-free:          0
+
+SUGGESTIONS
+
+  Use --level 1|2|3 to get more details, e.g:
+        pwreport --level 3 needle.cpp:nw_optimized
+
+  If you want to get an overview of your whole codebase, not only the hotspot, you can use:
+        pwreport --summary .
+
+1 file successfully analyzed and 0 failures in 247 ms

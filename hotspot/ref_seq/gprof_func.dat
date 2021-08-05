@@ -1,0 +1,10 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 66.76      0.04     0.04        2    20.03    20.03  single_iteration(float*, float*, float*, int, int, float, float, float, float, float)
+ 33.38      0.06     0.02        2    10.01    10.01  read_input(float*, int, int, char*)
+  0.00      0.06     0.00        2     0.00     0.00  get_time()
+  0.00      0.06     0.00        1     0.00     0.00  writeoutput(float*, int, int, char*)
+  0.00      0.06     0.00        1     0.00    40.06  compute_tran_temp(float*, int, float*, float*, int, int)

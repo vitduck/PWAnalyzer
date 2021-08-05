@@ -1,0 +1,21 @@
+[ INFO  ] ./hotspot.cpp:71:5: Sequential loop identified
+[ INFO  ] ./hotspot.cpp:71:5: Loop-carried dependencies inhibit parallelization: variable(s) 'delta'
+[ INFO  ] ./hotspot.cpp:80:13: Sequential loop identified
+[ INFO  ] ./hotspot.cpp:80:13: Loop-carried dependencies inhibit parallelization: variable(s) 'delta'
+[ INFO  ] ./hotspot.cpp:81:17: Sequential loop identified
+[ INFO  ] ./hotspot.cpp:81:17: Loop-carried dependencies inhibit parallelization: variable(s) 'delta'
+[ INFO  ] ./hotspot.cpp:137:9: Sequential loop identified
+[ INFO  ] ./hotspot.cpp:137:9: Loop-carried dependencies inhibit parallelization: variable(s) 'result'
+[ INFO  ] ./hotspot.cpp:139:13: Parallel forall: variable 'result'
+Loop                             Analyzable Compute patterns Opportunity          Auto-Parallelizable Parallelized
+-------------------------------- ---------- ---------------- -------------------- ------------------- ------------
+./hotspot.cpp
+|- single_iteration:71:5          x         n/a
+|  |- single_iteration:80:13      x         n/a
+|  |  `- single_iteration:81:17   x         n/a, forall
+|  `- single_iteration:137:9      x         n/a
+|     `- single_iteration:139:13  x         forall           simd, multi, offload  x
+|- compute_tran_temp:195:13
+|- writeoutput:227:5
+|  `- writeoutput:228:9
+`- read_input:250:2

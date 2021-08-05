@@ -1,0 +1,240 @@
+ACTIONS REPORT
+
+  FUNCTION BEGIN at ./kernel/kernel_cpu.c:kernel_cpu:40:1
+    40: void  kernel_cpu(	par_str par, 
+
+    LOOP BEGIN at ./kernel/kernel_cpu.c:kernel_cpu:117:2
+      117: 	for(l=0; l<dim.number_boxes; l=l+1){
+      118: 
+      119: 		//------------------------------------------------------------------------------------------100
+      120: 		//	home box - box parameters
+      121: 		//------------------------------------------------------------------------------------------100
+      122: 
+      123: 		first_i = box[l].offset;												// offset to common arrays
+      124: 
+      125: 		//------------------------------------------------------------------------------------------100
+      126: 		//	home box - distance, force, charge and type parameters from common arrays
+      127: 		//------------------------------------------------------------------------------------------100
+      128: 
+      129: 		rA = &rv[first_i];
+      130: 		fA = &fv[first_i];
+      131: 
+      132: 		//------------------------------------------------------------------------------------------100
+      133: 		//	Do for the # of (home+neighbor) boxes
+      134: 		//------------------------------------------------------------------------------------------100
+      135: 
+      136: 		for (k=0; k<(1+box[l].nn); k++) 
+      137: 		{
+      138: 
+      139: 			//----------------------------------------50
+      140: 			//	neighbor box - get pointer to the right box
+      141: 			//----------------------------------------50
+      142: 
+      143: 			if(k==0){
+      144: 				pointer = l;													// set first box to be processed to home box
+      145: 			}
+      146: 			else{
+      147: 				pointer = box[l].nei[k-1].number;							// remaining boxes are neighbor boxes
+      148: 			}
+      149: 
+      150: 			//----------------------------------------50
+      151: 			//	neighbor box - box parameters
+      152: 			//----------------------------------------50
+      153: 
+      154: 			first_j = box[pointer].offset; 
+      155: 
+      156: 			//----------------------------------------50
+      157: 			//	neighbor box - distance, force, charge and type parameters
+      158: 			//----------------------------------------50
+      159: 
+      160: 			rB = &rv[first_j];
+      161: 			qB = &qv[first_j];
+      162: 
+      163: 			//----------------------------------------50
+      164: 			//	Do for the # of particles in home box
+      165: 			//----------------------------------------50
+      166: 
+      167: 			for (i=0; i<NUMBER_PAR_PER_BOX; i=i+1){
+      168: 
+      169: 				// do for the # of particles in current (home or neighbor) box
+      170: 				for (j=0; j<NUMBER_PAR_PER_BOX; j=j+1){
+      171: 
+      172: 					// // coefficients
+      173: 					r2 = rA[i].v + rB[j].v - DOT(rA[i],rB[j]); 
+      174: 					u2 = a2*r2;
+      175: 					vij= exp(-u2);
+      176: 					fs = 2.*vij;
+      177: 					d.x = rA[i].x  - rB[j].x; 
+      178: 					d.y = rA[i].y  - rB[j].y; 
+      179: 					d.z = rA[i].z  - rB[j].z; 
+      180: 					fxij=fs*d.x;
+      181: 					fyij=fs*d.y;
+      182: 					fzij=fs*d.z;
+      183: 
+      184: 					// forces
+      185: 					fA[i].v +=  qB[j]*vij;
+      186: 					fA[i].x +=  qB[j]*fxij;
+      187: 					fA[i].y +=  qB[j]*fyij;
+      188: 					fA[i].z +=  qB[j]*fzij;
+      189: 
+      190: 				} // for j
+      191: 
+      192: 			} // for i
+      193: 
+      194: 		} // for k
+      195: 
+      196: 	} // for l
+
+      117:17: [ ERROR ] unsupported use of the struct variable 'dim'
+
+        SUGGESTION: for more details, invoke pwloops --non-analyzable ./kernel/kernel_cpu.c:kernel_cpu
+      LOOP BEGIN at ./kernel/kernel_cpu.c:kernel_cpu:136:3
+        136: 		for (k=0; k<(1+box[l].nn); k++) 
+        137: 		{
+        138: 
+        139: 			//----------------------------------------50
+        140: 			//	neighbor box - get pointer to the right box
+        141: 			//----------------------------------------50
+        142: 
+        143: 			if(k==0){
+        144: 				pointer = l;													// set first box to be processed to home box
+        145: 			}
+        146: 			else{
+        147: 				pointer = box[l].nei[k-1].number;							// remaining boxes are neighbor boxes
+        148: 			}
+        149: 
+        150: 			//----------------------------------------50
+        151: 			//	neighbor box - box parameters
+        152: 			//----------------------------------------50
+        153: 
+        154: 			first_j = box[pointer].offset; 
+        155: 
+        156: 			//----------------------------------------50
+        157: 			//	neighbor box - distance, force, charge and type parameters
+        158: 			//----------------------------------------50
+        159: 
+        160: 			rB = &rv[first_j];
+        161: 			qB = &qv[first_j];
+        162: 
+        163: 			//----------------------------------------50
+        164: 			//	Do for the # of particles in home box
+        165: 			//----------------------------------------50
+        166: 
+        167: 			for (i=0; i<NUMBER_PAR_PER_BOX; i=i+1){
+        168: 
+        169: 				// do for the # of particles in current (home or neighbor) box
+        170: 				for (j=0; j<NUMBER_PAR_PER_BOX; j=j+1){
+        171: 
+        172: 					// // coefficients
+        173: 					r2 = rA[i].v + rB[j].v - DOT(rA[i],rB[j]); 
+        174: 					u2 = a2*r2;
+        175: 					vij= exp(-u2);
+        176: 					fs = 2.*vij;
+        177: 					d.x = rA[i].x  - rB[j].x; 
+        178: 					d.y = rA[i].y  - rB[j].y; 
+        179: 					d.z = rA[i].z  - rB[j].z; 
+        180: 					fxij=fs*d.x;
+        181: 					fyij=fs*d.y;
+        182: 					fzij=fs*d.z;
+        183: 
+        184: 					// forces
+        185: 					fA[i].v +=  qB[j]*vij;
+        186: 					fA[i].x +=  qB[j]*fxij;
+        187: 					fA[i].y +=  qB[j]*fyij;
+        188: 					fA[i].z +=  qB[j]*fzij;
+        189: 
+        190: 				} // for j
+        191: 
+        192: 			} // for i
+        193: 
+        194: 		} // for k
+
+        136:25: [ ERROR ] unsupported use of the struct variable 'box'
+
+          SUGGESTION: for more details, invoke pwloops --non-analyzable ./kernel/kernel_cpu.c:kernel_cpu
+        LOOP BEGIN at ./kernel/kernel_cpu.c:kernel_cpu:167:4
+          167: 			for (i=0; i<NUMBER_PAR_PER_BOX; i=i+1){
+          168: 
+          169: 				// do for the # of particles in current (home or neighbor) box
+          170: 				for (j=0; j<NUMBER_PAR_PER_BOX; j=j+1){
+          171: 
+          172: 					// // coefficients
+          173: 					r2 = rA[i].v + rB[j].v - DOT(rA[i],rB[j]); 
+          174: 					u2 = a2*r2;
+          175: 					vij= exp(-u2);
+          176: 					fs = 2.*vij;
+          177: 					d.x = rA[i].x  - rB[j].x; 
+          178: 					d.y = rA[i].y  - rB[j].y; 
+          179: 					d.z = rA[i].z  - rB[j].z; 
+          180: 					fxij=fs*d.x;
+          181: 					fyij=fs*d.y;
+          182: 					fzij=fs*d.z;
+          183: 
+          184: 					// forces
+          185: 					fA[i].v +=  qB[j]*vij;
+          186: 					fA[i].x +=  qB[j]*fxij;
+          187: 					fA[i].y +=  qB[j]*fyij;
+          188: 					fA[i].z +=  qB[j]*fzij;
+          189: 
+          190: 				} // for j
+          191: 
+          192: 			} // for i
+
+          173:17: [ ERROR ] unsupported use of the struct variable 'rA'
+
+            SUGGESTION: for more details, invoke pwloops --non-analyzable ./kernel/kernel_cpu.c:kernel_cpu
+          LOOP BEGIN at ./kernel/kernel_cpu.c:kernel_cpu:170:5
+            170: 				for (j=0; j<NUMBER_PAR_PER_BOX; j=j+1){
+            171: 
+            172: 					// // coefficients
+            173: 					r2 = rA[i].v + rB[j].v - DOT(rA[i],rB[j]); 
+            174: 					u2 = a2*r2;
+            175: 					vij= exp(-u2);
+            176: 					fs = 2.*vij;
+            177: 					d.x = rA[i].x  - rB[j].x; 
+            178: 					d.y = rA[i].y  - rB[j].y; 
+            179: 					d.z = rA[i].z  - rB[j].z; 
+            180: 					fxij=fs*d.x;
+            181: 					fyij=fs*d.y;
+            182: 					fzij=fs*d.z;
+            183: 
+            184: 					// forces
+            185: 					fA[i].v +=  qB[j]*vij;
+            186: 					fA[i].x +=  qB[j]*fxij;
+            187: 					fA[i].y +=  qB[j]*fyij;
+            188: 					fA[i].z +=  qB[j]*fzij;
+            189: 
+            190: 				} // for j
+
+            173:17: [ ERROR ] unsupported use of the struct variable 'rA'
+
+              SUGGESTION: for more details, invoke pwloops --non-analyzable ./kernel/kernel_cpu.c:kernel_cpu
+          LOOP END
+        LOOP END
+      LOOP END
+    LOOP END
+  FUNCTION END
+
+CODE COVERAGE
+  Analyzable files:            1 / 1     (100.00 %)
+  Analyzable functions:        0 / 1     (  0.00 %)
+  Analyzable loops:            0 / 4     (  0.00 %)
+  Parallelized SLOCs:         85 / 169   ( 50.30 %)
+
+METRICS SUMMARY
+  Total defects:                 0
+  Total recommendations:         2
+  Total remarks:                 0
+  Total opportunities:           0
+  Total data races:              0
+  Total data-race-free:          0
+
+SUGGESTIONS
+
+  Use --level 1|2|3 to get more details, e.g:
+        pwreport --level 1 ./kernel/kernel_cpu.c:kernel_cpu
+
+  If you want to get an overview of your whole codebase, not only the hotspot, you can use:
+        pwreport --summary ./kernel
+
+1 file successfully analyzed and 0 failures in 123 ms

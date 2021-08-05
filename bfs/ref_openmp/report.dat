@@ -1,0 +1,99 @@
+ACTIONS REPORT
+
+  FUNCTION BEGIN at ./bfs.cpp:Usage:21:1
+    21: void Usage(int argc, char**argv){
+
+    [PWR001] ./bfs.cpp:21:1 function 'Usage' uses global variable 'stderr'
+  FUNCTION END
+
+  FUNCTION BEGIN at ./bfs.cpp:main:29:1
+    29: int main( int argc, char** argv) 
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./bfs.cpp:BFSGraph:39:1
+    39: void BFSGraph( int argc, char** argv) 
+
+    LOOP BEGIN at ./bfs.cpp:BFSGraph:75:2
+      75: 	for( unsigned int i = 0; i < no_of_nodes; i++) 
+
+      77:3: [ ERROR ] unsupported use of literal data
+    LOOP END
+
+    LOOP BEGIN at ./bfs.cpp:BFSGraph:97:2
+      97: 	for(int i=0; i < edge_list_size ; i++)
+
+      100:3: [ ERROR ] unsupported use of literal data
+    LOOP END
+
+    LOOP BEGIN at ./bfs.cpp:BFSGraph:110:2
+      110: 	for(int i=0;i<no_of_nodes;i++)
+
+      [OPP001] ./bfs.cpp:110:2 is a multi-threading opportunity
+      [OPP002] ./bfs.cpp:110:2 is a SIMD opportunity
+      [OPP003] ./bfs.cpp:110:2 is a offload opportunity
+    LOOP END
+
+    LOOP BEGIN at ./bfs.cpp:BFSGraph:125:2
+      125: 	do
+
+      141:50: [ ERROR ] unsupported use of the struct variable 'h_graph_nodes'
+      LOOP BEGIN at ./bfs.cpp:BFSGraph:137:13
+        137:             for(int tid = 0; tid < no_of_nodes; tid++ )
+
+        141:50: [ ERROR ] unsupported use of the struct variable 'h_graph_nodes'
+        LOOP BEGIN at ./bfs.cpp:BFSGraph:141:21
+          141:                     for(int i=h_graph_nodes[tid].starting; i<(h_graph_nodes[tid].no_of_edges + h_graph_nodes[tid].starting); i++)
+
+          141:50: [ ERROR ] unsupported use of the struct variable 'h_graph_nodes'
+        LOOP END
+      LOOP END
+
+      LOOP BEGIN at ./bfs.cpp:BFSGraph:159:13
+        159:             for(int tid=0; tid< no_of_nodes ; tid++ )
+
+        [PWR004] ./bfs.cpp:157:5 OpenMP directive with implicit datascoping assigned to the variables 'no_of_nodes', 'h_updating_graph_mask', 'h_graph_mask', 'h_graph_visited', 'stop'
+        [PWR005] ./bfs.cpp:157:5 OpenMP directive missing 'default(none)' clause
+      LOOP END
+    LOOP END
+
+    LOOP BEGIN at ./bfs.cpp:BFSGraph:180:2
+      180: 	for(int i=0;i<no_of_nodes;i++)
+
+      181:3: [ ERROR ] unsupported use of literal data
+    LOOP END
+    [PWR001] ./bfs.cpp:39:1 function 'BFSGraph' uses global variable 'fp'
+  FUNCTION END
+
+CODE COVERAGE
+  Analyzable files:            1 / 1     (100.00 %)
+  Analyzable functions:        1 / 3     ( 33.33 %)
+  Analyzable loops:            2 / 8     ( 25.00 %)
+  Parallelized SLOCs:         28 / 163   ( 17.18 %)
+
+METRICS SUMMARY
+  Total defects:                 0
+  Total recommendations:         8
+  Total remarks:                 0
+  Total opportunities:           3
+  Total data races:              0
+  Total data-race-free:          0
+
+SUGGESTIONS
+
+  6 loops could not be analyzed, get more information with pwloops:
+        pwloops --non-analyzable .
+
+  8 recommendations were found in your code, get more information with pwcheck:
+        pwcheck --only-recommendations .
+
+  3 opportunities for parallelization were found in your code, get more information with pwloops:
+        pwloops .
+
+  28 lines of code in parallel regions were found in your code, get more information with pwreport:
+        pwreport --parallelization .
+
+  You can control the level of detail using --level 1|2|3:
+        pwreport --summary --detail --level 3 .
+
+1 file successfully analyzed and 0 failures in 79 ms

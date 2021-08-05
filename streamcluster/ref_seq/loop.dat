@@ -1,0 +1,71 @@
+[ INFO  ] streamcluster_original.cpp:109:3: Sequential loop identified
+[ INFO  ] streamcluster_original.cpp:109:3: Loop-carried dependencies inhibit parallelization: variable(s) 'a'
+[ INFO  ] streamcluster_original.cpp:316:7: Parallel scalar reduction pattern identified for variable 'totalcost' with associative, commutative operator '+'
+[ INFO  ] streamcluster_original.cpp:412:3: Sequential loop identified
+[ INFO  ] streamcluster_original.cpp:412:3: Loop-carried dependencies inhibit parallelization: variable(s) 'count'
+[ INFO  ] streamcluster_original.cpp:425:5: Sequential loop identified
+[ INFO  ] streamcluster_original.cpp:425:5: Loop-carried dependencies inhibit parallelization: variable(s) 'work_mem'
+[ INFO  ] streamcluster_original.cpp:436:3: Sequential loop identified
+[ INFO  ] streamcluster_original.cpp:436:3: Loop-carried dependencies inhibit parallelization: variable(s) 'center_table'
+[ INFO  ] streamcluster_original.cpp:501:3: Sequential loop identified
+[ INFO  ] streamcluster_original.cpp:501:3: Loop-carried dependencies inhibit parallelization: variable(s) 'gl_lower'
+[ INFO  ] streamcluster_original.cpp:505:7: Parallel scalar reduction pattern identified for variable 'low' with associative, commutative operator '+'
+[ INFO  ] streamcluster_original.cpp:531:5: Parallel scalar reduction pattern identified for variable 'gl_cost_of_opening_x' with associative, commutative operator '+'
+[ INFO  ] streamcluster_original.cpp:531:5: Parallel scalar reduction pattern identified for variable 'gl_number_of_centers_to_close' with associative, commutative operator '+'
+[ INFO  ] streamcluster_original.cpp:554:5: Sequential loop identified
+[ INFO  ] streamcluster_original.cpp:554:5: Loop-carried dependencies inhibit parallelization: variable(s) 'is_center'
+[ INFO  ] streamcluster_original.cpp:676:5: Parallel forall: variable 'feasible'
+[ INFO  ] streamcluster_original.cpp:698:5: Sequential loop identified
+[ INFO  ] streamcluster_original.cpp:698:5: Loop-carried dependencies inhibit parallelization: variable(s) 'l'
+[ INFO  ] streamcluster_original.cpp:767:3: Parallel scalar reduction pattern identified for variable 'hiz' with associative, commutative operator '+'
+Loop                            Analyzable Compute patterns Opportunity          Auto-Parallelizable Parallelized
+------------------------------- ---------- ---------------- -------------------- ------------------- ------------
+streamcluster_original.cpp
+|- isIdentical:109:3             x         n/a
+|- shuffle:137:3
+|- intshuffle:157:3
+|- dist:184:3
+|- pspeedy:228:3
+|- pspeedy:240:5
+|  `- pspeedy:247:7
+|- pspeedy:263:5
+|  `- pspeedy:275:2
+|- pspeedy:305:3
+|- pspeedy:316:7                 x         scalar           simd, multi, offload  x
+|- pgain:412:3                   x         n/a, forall
+|- pgain:425:5                   x         n/a
+|- pgain:436:3                   x         n/a
+|- pgain:459:3
+|- pgain:501:3                   x         n/a
+|  `- pgain:505:7                x         scalar           simd, multi, offload  x
+|- pgain:531:5                   x         scalar           simd, multi, offload  x
+|- pgain:544:5
+|- pgain:554:5                   x         n/a
+|- pFL:614:3
+|  `- pFL:625:5
+|- selectfeasible_fast:676:5     x         forall           simd, multi, offload  x
+|- selectfeasible_fast:684:3
+|- selectfeasible_fast:689:3
+|  `- selectfeasible_fast:698:5  x         n/a
+|- pkmedian:757:3
+|- pkmedian:767:3                x         scalar           simd, multi, offload  x
+|- pkmedian:775:5
+|- pkmedian:796:3
+|- pkmedian:806:3
+|- pkmedian:827:7
+|- pkmedian:836:3
+|- contcenters:907:3
+|  `- contcenters:912:7
+|- copycenters:933:3
+|- copycenters:940:3
+|- localSearch:985:5
+|- localSearch:1000:5            x                          simd, multi, offload  x
+|- read:1036:5
+|  `- read:1037:7
+|- outcenterIDs:1090:3
+|- outcenterIDs:1094:3
+|  `- outcenterIDs:1098:7
+|- streamCluster:1124:3
+|- streamCluster:1133:3
+`- streamCluster:1140:3
+   `- streamCluster:1151:5

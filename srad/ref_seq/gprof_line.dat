@@ -1,0 +1,31 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+ 10.13      0.09     0.09                             main (srad.cpp:152 @ 401438)
+ 10.13      0.18     0.09                             main (srad.cpp:153 @ 401470)
+  9.57      0.27     0.09                             main (srad.cpp:147 @ 4013a1)
+  7.88      0.34     0.07                             main (srad.cpp:182 @ 4016f9)
+  7.32      0.40     0.07                             main (srad.cpp:143 @ 401281)
+  6.75      0.46     0.06                             main (srad.cpp:149 @ 401411)
+  6.19      0.52     0.06                             main (srad.cpp:142 @ 401209)
+  5.63      0.57     0.05                             main (srad.cpp:157 @ 4014f4)
+  4.50      0.61     0.04                             random_matrix(float*, int, int) (srad.cpp:228 @ 401864)
+  4.50      0.65     0.04                             main (srad.cpp:156 @ 4014af)
+  3.38      0.68     0.03                             main (srad.cpp:138 @ 4010f5)
+  3.38      0.71     0.03                             main (srad.cpp:139 @ 401151)
+  3.38      0.74     0.03                             main (srad.cpp:142 @ 40130d)
+  3.38      0.77     0.03                             main (srad.cpp:145 @ 401319)
+  2.25      0.79     0.02                             main (srad.cpp:140 @ 4011ad)
+  2.25      0.81     0.02                             main (srad.cpp:179 @ 401656)
+  1.69      0.82     0.02                             main (srad.cpp:148 @ 4013e5)
+  1.13      0.83     0.01                             main (srad.cpp:105 @ 400eeb)
+  1.13      0.84     0.01                             main (srad.cpp:134 @ 401079)
+  1.13      0.85     0.01                             main (srad.cpp:137 @ 401099)
+  1.13      0.86     0.01                             main (srad.cpp:173 @ 401588)
+  1.13      0.87     0.01                             main (srad.cpp:174 @ 4015ab)
+  1.13      0.88     0.01                             main (srad.cpp:175 @ 4015ef)
+  1.13      0.89     0.01                             main (srad.cpp:176 @ 401612)
+  0.00      0.89     0.00  4194304     0.00     0.00  std::exp(float) (cmath:223 @ 4018ab)
+  0.00      0.89     0.00        1     0.00     0.00  random_matrix(float*, int, int) (srad.cpp:222 @ 401825)

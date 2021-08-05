@@ -1,0 +1,8 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+100.13      5.73     5.73        1     5.73     5.73  kernel_cpu
+  0.00      5.73     0.00       13     0.00     0.00  get_time
+  0.00      5.73     0.00        2     0.00     0.00  isInteger

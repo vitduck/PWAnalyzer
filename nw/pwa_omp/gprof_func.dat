@@ -1,0 +1,9 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 52.22      1.71     1.71        1     1.71     3.29  runTest(int, char**)
+ 43.67      3.15     1.43        1     1.43     1.57  nw_optimized(int*, int*, int*, int, int, int)
+  4.28      3.29     0.14 67117361     0.00     0.00  maximum(int, int, int)
+  0.00      3.29     0.00        2     0.00     0.00  get_time()

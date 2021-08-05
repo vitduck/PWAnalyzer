@@ -1,0 +1,18 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+ 28.77      2.98     2.98                             init(int, char**) (pathfinder.cpp:46 @ 400b62)
+ 24.22      5.50     2.51                             run(int, char**) (pathfinder.cpp:101 @ 400d33)
+ 19.91      7.56     2.06                             run(int, char**) (pathfinder.cpp:103 @ 400d7c)
+ 19.18      9.55     1.99                             run(int, char**) (pathfinder.cpp:104 @ 400dbf)
+  2.23      9.78     0.23                             init(int, char**) (pathfinder.cpp:44 @ 400b50)
+  1.89      9.98     0.20                             run(int, char**) (pathfinder.cpp:99 @ 400d14)
+  1.74     10.16     0.18                             run(int, char**) (pathfinder.cpp:98 @ 400cfe)
+  1.50     10.31     0.16                             run(int, char**) (pathfinder.cpp:102 @ 400d6e)
+  0.63     10.38     0.07                             run(int, char**) (pathfinder.cpp:100 @ 400d2d)
+  0.10     10.39     0.01                             run(int, char**) (pathfinder.cpp:98 @ 400e04)
+  0.00     10.39     0.00        2     0.00     0.00  rdtsc() (timer.h:11 @ 400ea4)
+  0.00     10.39     0.00        1     0.00     0.00  run(int, char**) (pathfinder.cpp:82 @ 400c63)
+  0.00     10.39     0.00        1     0.00     0.00  init(int, char**) (pathfinder.cpp:25 @ 4009e2)

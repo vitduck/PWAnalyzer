@@ -1,0 +1,10 @@
+PARSEC Benchmark Suite
+time = 13.165467
+time pgain = 12.576344
+time pgain_dist = 12.251840
+time pgain_init = 0.207673
+time pselect = 0.000385
+time pspeedy = 0.436926
+time pshuffle = 0.004101
+time localSearch = 13.035393
+loops=7

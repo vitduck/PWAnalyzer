@@ -1,0 +1,6 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+100.42      0.21     0.21        1   210.88   210.88  BFSGraph(int, char**)

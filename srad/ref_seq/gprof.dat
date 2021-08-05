@@ -1,0 +1,8 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 97.06      0.94     0.94        1   941.50   941.50  random_matrix(float*, int, int)
+  2.07      0.96     0.02                             main
+  1.03      0.97     0.01  4194304     0.00     0.00  std::exp(float)

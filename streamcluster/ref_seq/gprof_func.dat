@@ -1,0 +1,30 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 96.84    112.22   112.22 107442728     0.00     0.00  dist(Point, Point, int)
+  2.94    115.62     3.40     1611     0.00     0.07  pgain(long, Points*, double, long*, int, pthread_barrier_t*)
+  0.16    115.81     0.19        2     0.10     0.10  contcenters(Points*)
+  0.10    115.94     0.12        1     0.12     0.12  SimStream::read(float*, int, int)
+  0.01    115.95     0.01        3     0.00     0.00  shuffle(Points*)
+  0.00    115.95     0.01        9     0.00     0.00  intshuffle(int*, int)
+  0.00    115.95     0.00        8     0.00    14.29  pFL(Points*, int*, int, float, long*, double, long, float, int, pthread_barrier_t*)
+  0.00    115.95     0.00        4     0.00     0.31  pspeedy(Points*, float, long*, int, pthread_barrier_t*)
+  0.00    115.95     0.00        2     0.00    57.82  localSearch(Points*, long, long, long*)
+  0.00    115.95     0.00        2     0.00    57.82  localSearchSub(void*)
+  0.00    115.95     0.00        2     0.00     0.00  gettime()
+  0.00    115.95     0.00        2     0.00    57.82  pkmedian(Points*, long, long, long*, int, pthread_barrier_t*)
+  0.00    115.95     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z7gettimev
+  0.00    115.95     0.00        1     0.00     0.00  copycenters(Points*, Points*, long*, long)
+  0.00    115.95     0.00        1     0.00     0.00  outcenterIDs(Points*, long*, char*)
+  0.00    115.95     0.00        1     0.00   115.95  streamCluster(PStream*, long, long, int, long, long, char*)
+  0.00    115.95     0.00        1     0.00     0.00  selectfeasible_fast(Points*, int**, int, int, pthread_barrier_t*)
+  0.00    115.95     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
+  0.00    115.95     0.00        1     0.00     0.00  PStream::PStream()
+  0.00    115.95     0.00        1     0.00     0.00  PStream::~PStream()
+  0.00    115.95     0.00        1     0.00     0.00  SimStream::feof()
+  0.00    115.95     0.00        1     0.00     0.00  SimStream::ferror()
+  0.00    115.95     0.00        1     0.00     0.00  SimStream::SimStream(long)
+  0.00    115.95     0.00        1     0.00     0.00  SimStream::~SimStream()
+  0.00    115.95     0.00        1     0.00     0.00  SimStream::~SimStream()

@@ -1,0 +1,74 @@
+[ INFO  ] needle.cpp:113:5: Sequential loop identified
+[ INFO  ] needle.cpp:113:5: Loop-carried dependencies inhibit parallelization: variable(s) 'input_itemsets'
+[ INFO  ] needle.cpp:118:9: Sequential loop identified
+[ INFO  ] needle.cpp:118:9: Loop-carried dependencies inhibit parallelization: variable(s) 'reference_l'
+[ INFO  ] needle.cpp:125:13: Sequential loop identified
+[ INFO  ] needle.cpp:125:13: Loop-carried dependencies inhibit parallelization: variable(s) 'reference_l'
+[ INFO  ] needle.cpp:128:17: Parallel forall: variable 'reference_l'
+[ INFO  ] needle.cpp:135:13: Sequential loop identified
+[ INFO  ] needle.cpp:135:13: Loop-carried dependencies inhibit parallelization: variable(s) 'input_itemsets_l'
+[ INFO  ] needle.cpp:138:17: Parallel forall: variable 'input_itemsets_l'
+[ INFO  ] needle.cpp:145:13: Sequential loop identified
+[ INFO  ] needle.cpp:145:13: Loop-carried dependencies inhibit parallelization: variable(s) 'input_itemsets_l'
+[ INFO  ] needle.cpp:147:17: Sequential loop identified
+[ INFO  ] needle.cpp:147:17: Loop-carried dependencies inhibit parallelization: variable(s) 'input_itemsets_l'
+[ INFO  ] needle.cpp:156:13: Sequential loop identified
+[ INFO  ] needle.cpp:156:13: Loop-carried dependencies inhibit parallelization: variable(s) 'input_itemsets'
+[ INFO  ] needle.cpp:159:17: Parallel forall: variable 'input_itemsets'
+[ INFO  ] needle.cpp:173:5: Sequential loop identified
+[ INFO  ] needle.cpp:173:5: Loop-carried dependencies inhibit parallelization: variable(s) 'input_itemsets'
+[ INFO  ] needle.cpp:178:9: Sequential loop identified
+[ INFO  ] needle.cpp:178:9: Loop-carried dependencies inhibit parallelization: variable(s) 'reference_l'
+[ INFO  ] needle.cpp:186:13: Sequential loop identified
+[ INFO  ] needle.cpp:186:13: Loop-carried dependencies inhibit parallelization: variable(s) 'reference_l'
+[ INFO  ] needle.cpp:189:17: Parallel forall: variable 'reference_l'
+[ INFO  ] needle.cpp:196:13: Sequential loop identified
+[ INFO  ] needle.cpp:196:13: Loop-carried dependencies inhibit parallelization: variable(s) 'input_itemsets_l'
+[ INFO  ] needle.cpp:199:17: Parallel forall: variable 'input_itemsets_l'
+[ INFO  ] needle.cpp:206:13: Sequential loop identified
+[ INFO  ] needle.cpp:206:13: Loop-carried dependencies inhibit parallelization: variable(s) 'input_itemsets_l'
+[ INFO  ] needle.cpp:208:17: Sequential loop identified
+[ INFO  ] needle.cpp:208:17: Loop-carried dependencies inhibit parallelization: variable(s) 'input_itemsets_l'
+[ INFO  ] needle.cpp:217:13: Sequential loop identified
+[ INFO  ] needle.cpp:217:13: Loop-carried dependencies inhibit parallelization: variable(s) 'input_itemsets'
+[ INFO  ] needle.cpp:220:17: Parallel forall: variable 'input_itemsets'
+[ INFO  ] needle.cpp:272:5: Sequential loop identified
+[ INFO  ] needle.cpp:272:5: Loop-carried dependencies inhibit parallelization: variable(s) 'input_itemsets'
+[ INFO  ] needle.cpp:273:9: Parallel forall: variable 'input_itemsets'
+[ INFO  ] needle.cpp:288:5: Sequential loop identified
+[ INFO  ] needle.cpp:288:5: Loop-carried dependencies inhibit parallelization: variable(s) 'referrence'
+[ INFO  ] needle.cpp:289:9: Parallel forall: variable 'referrence'
+[ INFO  ] needle.cpp:294:5: Parallel forall: variable 'input_itemsets'
+[ INFO  ] needle.cpp:296:5: Parallel forall: variable 'input_itemsets'
+Loop                            Analyzable Compute patterns Opportunity          Auto-Parallelizable Parallelized
+------------------------------- ---------- ---------------- -------------------- ------------------- ------------
+needle.cpp
+|- nw_optimized:113:5            x         n/a
+|  `- nw_optimized:118:9         x         n/a
+|     |- nw_optimized:125:13     x         n/a
+|     |  `- nw_optimized:128:17  x         forall           simd, multi, offload  x
+|     |- nw_optimized:135:13     x         n/a
+|     |  `- nw_optimized:138:17  x         forall           simd, multi, offload  x
+|     |- nw_optimized:145:13     x         n/a
+|     |  `- nw_optimized:147:17  x         n/a
+|     `- nw_optimized:156:13     x         n/a
+|        `- nw_optimized:159:17  x         forall           simd, multi, offload  x
+|- nw_optimized:173:5            x         n/a
+|  `- nw_optimized:178:9         x         n/a
+|     |- nw_optimized:186:13     x         n/a
+|     |  `- nw_optimized:189:17  x         forall           simd, multi, offload  x
+|     |- nw_optimized:196:13     x         n/a
+|     |  `- nw_optimized:199:17  x         forall           simd, multi, offload  x
+|     |- nw_optimized:206:13     x         n/a
+|     |  `- nw_optimized:208:17  x         n/a
+|     `- nw_optimized:217:13     x         n/a
+|        `- nw_optimized:220:17  x         forall           simd, multi, offload  x
+|- runTest:272:5                 x         n/a
+|  `- runTest:273:9              x         forall           simd, multi, offload  x
+|- runTest:280:5
+|- runTest:283:5
+|- runTest:288:5                 x         n/a
+|  `- runTest:289:9              x         forall           simd, multi, offload  x
+|- runTest:294:5                 x         forall           simd, multi, offload  x
+|- runTest:296:5                 x         forall           simd, multi, offload  x
+`- runTest:320:5

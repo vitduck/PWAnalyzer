@@ -1,0 +1,7 @@
+Loop                         Analyzable Compute patterns Opportunity Auto-Parallelizable Parallelized
+---------------------------- ---------- ---------------- ----------- ------------------- ------------
+./kernel/kernel_cpu.c
+`- kernel_cpu:117:2
+   `- kernel_cpu:136:3
+      `- kernel_cpu:167:4
+         `- kernel_cpu:170:5

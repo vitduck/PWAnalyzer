@@ -1,0 +1,365 @@
+ACTIONS REPORT
+
+  FUNCTION BEGIN at ./backprop.c:drnd:30:1
+    30: float drnd()
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:dpn1:36:1
+    36: float dpn1()
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:squash:43:1
+    43: float squash(x)
+
+    [PWR003] ./backprop.c:43:1 'squash' is a const function but it is not marked as such
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:alloc_1d_dbl:56:1
+    56: float *alloc_1d_dbl(n)
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:alloc_2d_dbl:72:1
+    72: float **alloc_2d_dbl(m, n)
+
+    LOOP BEGIN at ./backprop.c:alloc_2d_dbl:84:3
+      84:   for (i = 0; i < m; i++) {
+
+      63:5: [ ERROR ] unsupported use of literal data
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:bpnn_randomize_weights:92:1
+    92: bpnn_randomize_weights(w, m, n)
+
+    LOOP BEGIN at ./backprop.c:bpnn_randomize_weights:98:3
+      98:   for (i = 0; i <= m; i++) {
+
+      100:24: [ ERROR ] no definition found for function 'rand'
+      LOOP BEGIN at ./backprop.c:bpnn_randomize_weights:99:5
+        99:     for (j = 0; j <= n; j++) {
+
+        100:24: [ ERROR ] no definition found for function 'rand'
+      LOOP END
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:bpnn_randomize_row:106:1
+    106: bpnn_randomize_row(w, m)
+
+    LOOP BEGIN at ./backprop.c:bpnn_randomize_row:111:2
+      111: 	for (i = 0; i <= m; i++) {
+
+      [OPP001] ./backprop.c:111:2 is a multi-threading opportunity
+      [OPP002] ./backprop.c:111:2 is a SIMD opportunity
+      [OPP003] ./backprop.c:111:2 is a offload opportunity
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:bpnn_zero_weights:118:1
+    118: bpnn_zero_weights(w, m, n)
+
+    LOOP BEGIN at ./backprop.c:bpnn_zero_weights:124:3
+      124:   for (i = 0; i <= m; i++) {
+
+      LOOP BEGIN at ./backprop.c:bpnn_zero_weights:125:5
+        125:     for (j = 0; j <= n; j++) {
+
+        [RMK001] ./backprop.c:125:5 Loop nesting that might benefit from hybrid parallelization using multi-threading and SIMD
+        [RMK002] ./backprop.c:125:5 Loop nesting that might benefit from hybrid parallelization using offloading and SIMD
+
+        [OPP002] ./backprop.c:125:5 is a SIMD opportunity
+      LOOP END
+      [PWR002] ./backprop.c:122:10 'j' not declared in the innermost scope possible
+
+      [OPP001] ./backprop.c:124:3 is a multi-threading opportunity
+      [OPP003] ./backprop.c:124:3 is a offload opportunity
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:bpnn_initialize:132:1
+    132: void bpnn_initialize(seed)
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:bpnn_internal_create:139:1
+    139: BPNN *bpnn_internal_create(n_in, n_hidden, n_out)
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:bpnn_free:171:1
+    171: void bpnn_free(net)
+
+    LOOP BEGIN at ./backprop.c:bpnn_free:187:3
+      187:   for (i = 0; i <= n1; i++) {
+
+      188:5: [ ERROR ] no definition found for function 'free'
+      189:5: [ ERROR ] no definition found for function 'free'
+    LOOP END
+
+    LOOP BEGIN at ./backprop.c:bpnn_free:194:3
+      194:   for (i = 0; i <= n2; i++) {
+
+      195:5: [ ERROR ] no definition found for function 'free'
+      196:5: [ ERROR ] no definition found for function 'free'
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:bpnn_create:214:1
+    214: BPNN *bpnn_create(n_in, n_hidden, n_out)
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:bpnn_layerforward:235:1
+    235: void bpnn_layerforward(l1, l2, conn, n1, n2)
+
+    LOOP BEGIN at ./backprop.c:bpnn_layerforward:249:3
+      249:   for (j = 1; j <= n2; j++) {
+
+      LOOP BEGIN at ./backprop.c:bpnn_layerforward:253:5
+        253:     for (k = 0; k <= n1; k++) {	
+
+        [RMK001] ./backprop.c:253:5 Loop nesting that might benefit from hybrid parallelization using multi-threading and SIMD
+        [RMK002] ./backprop.c:253:5 Loop nesting that might benefit from hybrid parallelization using offloading and SIMD
+
+        [OPP002] ./backprop.c:253:5 is a SIMD opportunity
+      LOOP END
+      [PWR002] ./backprop.c:240:10 'k' not declared in the innermost scope possible
+      [PWR002] ./backprop.c:239:9 'sum' not declared in the innermost scope possible
+      [PWR010] ./backprop.c:249:3 'conn' multi-dimensional array not accessed in row-major order
+      [RMK005] ./backprop.c:254:14 avoid non-consecutive array access for variable 'conn' to improve performance
+
+      [OPP001] ./backprop.c:249:3 is a multi-threading opportunity
+      [OPP003] ./backprop.c:249:3 is a offload opportunity
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:bpnn_output_error:261:1
+    261: void bpnn_output_error(delta, target, output, nj, err)  
+
+    LOOP BEGIN at ./backprop.c:bpnn_output_error:268:3
+      268:   for (j = 1; j <= nj; j++) {
+
+      [PWR002] ./backprop.c:266:12 't' not declared in the innermost scope possible
+      [PWR002] ./backprop.c:266:9 'o' not declared in the innermost scope possible
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:bpnn_hidden_error:278:1
+    278: void bpnn_hidden_error(delta_h,   
+
+    LOOP BEGIN at ./backprop.c:bpnn_hidden_error:292:3
+      292:   for (j = 1; j <= nh; j++) {
+
+      LOOP BEGIN at ./backprop.c:bpnn_hidden_error:295:5
+        295:     for (k = 1; k <= no; k++) {
+
+        [OPP001] ./backprop.c:295:5 is a multi-threading opportunity
+        [OPP002] ./backprop.c:295:5 is a SIMD opportunity
+        [OPP003] ./backprop.c:295:5 is a offload opportunity
+      LOOP END
+      [PWR002] ./backprop.c:288:10 'k' not declared in the innermost scope possible
+      [PWR002] ./backprop.c:289:12 'sum' not declared in the innermost scope possible
+      [PWR002] ./backprop.c:289:9 'h' not declared in the innermost scope possible
+      [RMK005] ./backprop.c:296:27 avoid non-consecutive array access for variable 'who' to improve performance
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:bpnn_adjust_weights:305:1
+    305: void bpnn_adjust_weights(delta, ndelta, ly, nly, w, oldw)
+
+    LOOP BEGIN at ./backprop.c:bpnn_adjust_weights:321:3
+      321:   for (j = 1; j <= ndelta; j++) {
+
+      LOOP BEGIN at ./backprop.c:bpnn_adjust_weights:322:5
+        322:     for (k = 0; k <= nly; k++) {
+
+        [PWR002] ./backprop.c:308:9 'new_dw' not declared in the innermost scope possible
+        [PWR021] ./backprop.c:322:5 extract temporary computations to a vectorizable loop
+      LOOP END
+      [PWR002] ./backprop.c:309:7 'k' not declared in the innermost scope possible
+      [PWR002] ./backprop.c:308:9 'new_dw' not declared in the innermost scope possible
+      [PWR010] ./backprop.c:321:3 'oldw', 'w' multi-dimensional arrays not accessed in row-major order
+      [RMK005] ./backprop.c:323:24 avoid non-consecutive array access for variable 'delta' to improve performance
+      [RMK005] ./backprop.c:323:56 avoid non-consecutive array access for variable 'oldw' to improve performance
+      [RMK005] ./backprop.c:325:15 avoid non-consecutive array access for variable 'oldw' to improve performance
+      [RMK005] ./backprop.c:324:12 avoid non-consecutive array access for variable 'w' to improve performance
+      [RMK005] ./backprop.c:324:12 avoid non-consecutive array access for variable 'w' to improve performance
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:bpnn_feedforward:331:1
+    331: void bpnn_feedforward(net)
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:bpnn_train:349:1
+    349: void bpnn_train(net, eo, eh)
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:bpnn_save:385:1
+    385: void bpnn_save(net, filename)
+
+    LOOP BEGIN at ./backprop.c:bpnn_save:420:3
+      420:   for (i = 0; i <= n1; i++) {
+
+      423:7: [ ERROR ] unsupported use of variable
+      423:7: [ ERROR ] unsupported use of variable
+      423:7: [ ERROR ] unsupported use of variable
+      423:7: [ ERROR ] unsupported use of variable
+      LOOP BEGIN at ./backprop.c:bpnn_save:421:5
+        421:     for (j = 0; j <= n2; j++) {
+
+        423:7: [ ERROR ] unsupported use of variable
+        423:7: [ ERROR ] unsupported use of variable
+        423:7: [ ERROR ] unsupported use of variable
+        423:7: [ ERROR ] unsupported use of variable
+        LOOP BEGIN at ./backprop.c:bpnn_save:423:7
+          423:       fastcopy(&mem[memcnt], &dvalue, sizeof(float));
+
+          423:7: [ ERROR ] unsupported target analysis, unreachable code detected
+        LOOP END
+      LOOP END
+    LOOP END
+
+    LOOP BEGIN at ./backprop.c:bpnn_save:434:3
+      434:   for (i = 0; i <= n2; i++) {
+
+      437:7: [ ERROR ] unsupported use of variable
+      437:7: [ ERROR ] unsupported use of variable
+      437:7: [ ERROR ] unsupported use of variable
+      437:7: [ ERROR ] unsupported use of variable
+      LOOP BEGIN at ./backprop.c:bpnn_save:435:5
+        435:     for (j = 0; j <= n3; j++) {
+
+        437:7: [ ERROR ] unsupported use of variable
+        437:7: [ ERROR ] unsupported use of variable
+        437:7: [ ERROR ] unsupported use of variable
+        437:7: [ ERROR ] unsupported use of variable
+        LOOP BEGIN at ./backprop.c:bpnn_save:437:7
+          437:       fastcopy(&mem[memcnt], &dvalue, sizeof(float));
+
+          437:7: [ ERROR ] unsupported target analysis, unreachable code detected
+        LOOP END
+      LOOP END
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop.c:bpnn_read:450:1
+    450: BPNN *bpnn_read(filename)
+
+    LOOP BEGIN at ./backprop.c:bpnn_read:474:3
+      474:   for (i = 0; i <= n1; i++) {
+
+      476:7: [ ERROR ] unsupported use of variable
+      476:7: [ ERROR ] unsupported use of variable
+      476:7: [ ERROR ] unsupported use of variable
+      476:7: [ ERROR ] unsupported use of variable
+      LOOP BEGIN at ./backprop.c:bpnn_read:475:5
+        475:     for (j = 0; j <= n2; j++) {
+
+        476:7: [ ERROR ] unsupported use of variable
+        476:7: [ ERROR ] unsupported use of variable
+        476:7: [ ERROR ] unsupported use of variable
+        476:7: [ ERROR ] unsupported use of variable
+        LOOP BEGIN at ./backprop.c:bpnn_read:476:7
+          476:       fastcopy(&(new->input_weights[i][j]), &mem[memcnt], sizeof(float));
+
+          476:7: [ ERROR ] unsupported target analysis, unreachable code detected
+        LOOP END
+      LOOP END
+    LOOP END
+
+    LOOP BEGIN at ./backprop.c:bpnn_read:487:3
+      487:   for (i = 0; i <= n2; i++) {
+
+      489:7: [ ERROR ] unsupported use of variable
+      489:7: [ ERROR ] unsupported use of variable
+      489:7: [ ERROR ] unsupported use of variable
+      489:7: [ ERROR ] unsupported use of variable
+      LOOP BEGIN at ./backprop.c:bpnn_read:488:5
+        488:     for (j = 0; j <= n3; j++) {
+
+        489:7: [ ERROR ] unsupported use of variable
+        489:7: [ ERROR ] unsupported use of variable
+        489:7: [ ERROR ] unsupported use of variable
+        489:7: [ ERROR ] unsupported use of variable
+        LOOP BEGIN at ./backprop.c:bpnn_read:489:7
+          489:       fastcopy(&(new->hidden_weights[i][j]), &mem[memcnt], sizeof(float));
+
+          489:7: [ ERROR ] unsupported target analysis, unreachable code detected
+        LOOP END
+      LOOP END
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./facetrain.c:backprop_face:12:1
+    12: backprop_face()
+
+    [PWR001] ./facetrain.c:12:1 function 'backprop_face' uses global variable 'layer_size'
+  FUNCTION END
+
+  FUNCTION BEGIN at ./facetrain.c:setup:27:1
+    27: int setup(argc, argv)
+
+    [PWR001] ./facetrain.c:27:1 function 'setup' uses global variables 'stderr', 'layer_size'
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop_kernel.c:gettime:26:1
+    26: double gettime() {
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop_kernel.c:main:35:1
+    35: int
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./backprop_kernel.c:bpnn_train_kernel:42:1
+    42: void bpnn_train_kernel(BPNN *net, float *eo, float *eh)
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./imagenet.c:load:8:1
+    8: load(net)
+
+    LOOP BEGIN at ./imagenet.c:load:20:3
+      20:   for (i = 0; i < nr; i++) {
+
+      21:23: [ ERROR ] no definition found for function 'rand'
+    LOOP END
+    [PWR001] ./imagenet.c:8:1 function 'load' uses global variable 'layer_size'
+  FUNCTION END
+
+CODE COVERAGE
+  Analyzable files:            4 / 4     (100.00 %)
+  Analyzable functions:        7 / 26    ( 26.92 %)
+  Analyzable loops:           10 / 28    ( 35.71 %)
+  Parallelized SLOCs:          0 / 438   (  0.00 %)
+
+METRICS SUMMARY
+  Total defects:                 0
+  Total recommendations:        18
+  Total remarks:                11
+  Total opportunities:          12
+  Total data races:              0
+  Total data-race-free:          0
+
+SUGGESTIONS
+
+  18 loops could not be analyzed, get more information with pwloops:
+        pwloops --non-analyzable .
+
+  18 recommendations were found in your code, get more information with pwcheck:
+        pwcheck --only-recommendations .
+
+  12 opportunities for parallelization were found in your code, get more information with pwloops:
+        pwloops .
+
+  You can control the level of detail using --level 1|2|3:
+        pwreport --summary --detail --level 3 .
+
+4 files successfully analyzed and 0 failures in 425 ms

@@ -1,0 +1,36 @@
+[ INFO  ] ./euler3d_cpu.cpp:120:2: Parallel forall: variable 'variables'
+[ INFO  ] ./euler3d_cpu.cpp:122:3: Parallel forall: variable 'variables'
+[ INFO  ] ./euler3d_cpu.cpp:348:5: Sequential loop identified
+[ INFO  ] ./euler3d_cpu.cpp:348:5: Loop-carried dependencies inhibit parallelization: variable(s) 'variables'
+[ INFO  ] ./euler3d_cpu.cpp:353:9: Sequential loop identified
+[ INFO  ] ./euler3d_cpu.cpp:353:9: Loop-carried dependencies inhibit parallelization: variable(s) 'variables'
+[ INFO  ] ./euler3d_cpu.cpp:449:3: Sequential loop identified
+[ INFO  ] ./euler3d_cpu.cpp:449:3: Loop-carried dependencies inhibit parallelization: variable(s) 'normals'
+[ INFO  ] ./euler3d_cpu.cpp:452:4: Sequential loop identified
+[ INFO  ] ./euler3d_cpu.cpp:452:4: Loop-carried dependencies inhibit parallelization: variable(s) 'normals'
+[ INFO  ] ./euler3d_cpu.cpp:456:5: Sequential loop identified
+[ INFO  ] ./euler3d_cpu.cpp:456:5: Loop-carried dependencies inhibit parallelization: variable(s) 'normals'
+Loop                             Analyzable Compute patterns Opportunity    Auto-Parallelizable Parallelized
+-------------------------------- ---------- ---------------- -------------- ------------------- ------------
+./euler3d_cpu.cpp
+|- dump:95:3
+|- dump:102:3
+|  `- dump:104:4
+|- dump:112:3
+|- initialize_variables:120:2     x         forall           multi, offload  x
+|  `- initialize_variables:122:3  x         forall           simd            x
+|- compute_step_factor:175:9
+|  `- compute_step_factor:180:2
+|- compute_flux:212:9
+|  `- compute_flux:217:2
+|     `- compute_flux:250:3
+|- time_step:348:5                x         n/a                                                  x
+|  `- time_step:353:9             x         n/a                                                  x
+|- main:430:3
+|  `- main:433:4
+|     `- main:439:5
+|- main:449:3                     x         n/a
+|  `- main:452:4                  x         n/a
+|     `- main:456:5               x         n/a
+`- main:478:2
+   `- main:485:3

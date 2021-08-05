@@ -1,0 +1,10 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+100.14     59.22    59.22        1    59.22    59.22  lud_base
+  0.02     59.23     0.01        1     0.01     0.01  create_matrix_from_file
+  0.00     59.23     0.00        1     0.00     0.00  get_interval_by_sec
+  0.00     59.23     0.00        1     0.00     0.00  stopwatch_start
+  0.00     59.23     0.00        1     0.00     0.00  stopwatch_stop

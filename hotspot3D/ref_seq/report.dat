@@ -1,0 +1,79 @@
+ACTIONS REPORT
+
+  FUNCTION BEGIN at 3D.c:computeTempCPU:80:1
+    80: void computeTempCPU(float *pIn, float* tIn, float *tOut, 
+
+    LOOP BEGIN at 3D.c:computeTempCPU:95:5
+      95:     do{
+
+      112:16: [ ERROR ] unsupported pointer assignment for variable 'temp'
+      LOOP BEGIN at 3D.c:computeTempCPU:96:9
+        96:         for(z = 0; z < nz; z++)
+
+        LOOP BEGIN at 3D.c:computeTempCPU:97:13
+          97:             for(y = 0; y < ny; y++)
+
+          LOOP BEGIN at 3D.c:computeTempCPU:98:17
+            98:                 for(x = 0; x < nx; x++)
+
+            [PWR001] 3D.c:80:1 function 'computeTempCPU' uses global variable 'amb_temp'
+            [PWR002] 3D.c:92:19 'b' not declared in the innermost scope possible
+            [PWR002] 3D.c:92:21 't' not declared in the innermost scope possible
+            [PWR002] 3D.c:92:11 'w' not declared in the innermost scope possible
+            [PWR002] 3D.c:92:13 'e' not declared in the innermost scope possible
+            [PWR002] 3D.c:92:17 's' not declared in the innermost scope possible
+            [PWR002] 3D.c:92:15 'n' not declared in the innermost scope possible
+            [PWR002] 3D.c:92:9 'c' not declared in the innermost scope possible
+
+            [OPP001] 3D.c:98:17 is a multi-threading opportunity
+            [OPP002] 3D.c:98:17 is a SIMD opportunity
+            [OPP003] 3D.c:98:17 is a offload opportunity
+          LOOP END
+          [PWR001] 3D.c:80:1 function 'computeTempCPU' uses global variable 'amb_temp'
+          [PWR002] 3D.c:93:9 'x' not declared in the innermost scope possible
+          [PWR002] 3D.c:92:19 'b' not declared in the innermost scope possible
+          [PWR002] 3D.c:92:21 't' not declared in the innermost scope possible
+          [PWR002] 3D.c:92:11 'w' not declared in the innermost scope possible
+          [PWR002] 3D.c:92:13 'e' not declared in the innermost scope possible
+          [PWR002] 3D.c:92:17 's' not declared in the innermost scope possible
+          [PWR002] 3D.c:92:15 'n' not declared in the innermost scope possible
+          [PWR002] 3D.c:92:9 'c' not declared in the innermost scope possible
+        LOOP END
+        [PWR001] 3D.c:80:1 function 'computeTempCPU' uses global variable 'amb_temp'
+        [PWR002] 3D.c:93:9 'x' not declared in the innermost scope possible
+        [PWR002] 3D.c:93:11 'y' not declared in the innermost scope possible
+        [PWR002] 3D.c:92:19 'b' not declared in the innermost scope possible
+        [PWR002] 3D.c:92:21 't' not declared in the innermost scope possible
+        [PWR002] 3D.c:92:11 'w' not declared in the innermost scope possible
+        [PWR002] 3D.c:92:13 'e' not declared in the innermost scope possible
+        [PWR002] 3D.c:92:17 's' not declared in the innermost scope possible
+        [PWR002] 3D.c:92:15 'n' not declared in the innermost scope possible
+        [PWR002] 3D.c:92:9 'c' not declared in the innermost scope possible
+      LOOP END
+    LOOP END
+    [PWR001] 3D.c:80:1 function 'computeTempCPU' uses global variable 'amb_temp'
+  FUNCTION END
+
+CODE COVERAGE
+  Analyzable files:            1 / 1     (100.00 %)
+  Analyzable functions:        1 / 1     (100.00 %)
+  Analyzable loops:            3 / 4     ( 75.00 %)
+  Parallelized SLOCs:          0 / 36    (  0.00 %)
+
+METRICS SUMMARY
+  Total defects:                 0
+  Total recommendations:        29
+  Total remarks:                 0
+  Total opportunities:           3
+  Total data races:              0
+  Total data-race-free:          0
+
+SUGGESTIONS
+
+  Use --level 1|2|3 to get more details, e.g:
+        pwreport --level 3 3D.c:computeTempCPU
+
+  If you want to get an overview of your whole codebase, not only the hotspot, you can use:
+        pwreport --summary .
+
+1 file successfully analyzed and 0 failures in 125 ms

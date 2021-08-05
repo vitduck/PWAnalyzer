@@ -1,0 +1,103 @@
+ACTIONS REPORT
+
+  FUNCTION BEGIN at streamcluster_original.cpp:pgain:361:1
+    361: double pgain(long x, Points *points, double z, long int *numcenters, int pid, pthread_barrier_t* barrier)
+
+    LOOP BEGIN at streamcluster_original.cpp:pgain:412:3
+      412:   for( int i = k1; i < k2; i++ ) {
+
+      [PWR001] streamcluster_original.cpp:361:1 function 'pgain' uses global variables 'is_center', 'center_table'
+    LOOP END
+
+    LOOP BEGIN at streamcluster_original.cpp:pgain:425:5
+      425:     for( int p = 0; p < nproc; p++ ) {
+
+      [PWR001] streamcluster_original.cpp:361:1 function 'pgain' uses global variable 'nproc'
+      [PWR021] streamcluster_original.cpp:425:5 extract temporary computation to a vectorizable loop
+    LOOP END
+
+    LOOP BEGIN at streamcluster_original.cpp:pgain:436:3
+      436:   for( int i = k1; i < k2; i++ ) {
+
+      [PWR001] streamcluster_original.cpp:361:1 function 'pgain' uses global variables 'is_center', 'center_table'
+    LOOP END
+
+    LOOP BEGIN at streamcluster_original.cpp:pgain:459:3
+      459:   for ( i = k1; i < k2; i++ ) {
+
+      460:25: [ ERROR ] unsupported use of variable
+      460:39: [ ERROR ] unsupported use of variable
+      185:16: [ ERROR ] unsupported dereference of variable 'p1' due to its type
+      185:30: [ ERROR ] unsupported dereference of variable 'p2' due to its type
+    LOOP END
+
+    LOOP BEGIN at streamcluster_original.cpp:pgain:501:3
+      501:   for ( int i = k1; i < k2; i++ ) {
+
+      LOOP BEGIN at streamcluster_original.cpp:pgain:505:7
+        505:       for( int p = 0; p < nproc; p++ ) {
+
+        [PWR001] streamcluster_original.cpp:361:1 function 'pgain' uses global variables 'nproc', 'center_table'
+        [RMK006] streamcluster_original.cpp:506:9 avoid indirect array access for variable 'work_mem' to improve performance
+
+        [OPP001] streamcluster_original.cpp:505:7 is a multi-threading opportunity
+        [OPP002] streamcluster_original.cpp:505:7 is a SIMD opportunity
+        [OPP003] streamcluster_original.cpp:505:7 is a offload opportunity
+      LOOP END
+      [PWR001] streamcluster_original.cpp:361:1 function 'pgain' uses global variables 'is_center', 'nproc', 'center_table'
+      [RMK005] streamcluster_original.cpp:506:18 avoid non-consecutive array access for variable 'center_table' to improve performance
+      [RMK006] streamcluster_original.cpp:506:9 avoid indirect array access for variable 'work_mem' to improve performance
+      [RMK006] streamcluster_original.cpp:508:33 avoid indirect array access for variable 'gl_lower' to improve performance
+    LOOP END
+
+    LOOP BEGIN at streamcluster_original.cpp:pgain:531:5
+      531:     for( int p = 0; p < nproc; p++ ) {
+
+      [PWR001] streamcluster_original.cpp:361:1 function 'pgain' uses global variable 'nproc'
+
+      [OPP001] streamcluster_original.cpp:531:5 is a multi-threading opportunity
+      [OPP002] streamcluster_original.cpp:531:5 is a SIMD opportunity
+      [OPP003] streamcluster_original.cpp:531:5 is a offload opportunity
+    LOOP END
+
+    LOOP BEGIN at streamcluster_original.cpp:pgain:544:5
+      544:     for ( int i = k1; i < k2; i++ ) {
+
+      550:9: [ ERROR ] unsupported use of variable
+      550:23: [ ERROR ] unsupported use of variable
+      185:16: [ ERROR ] unsupported dereference of variable 'p1' due to its type
+      185:30: [ ERROR ] unsupported dereference of variable 'p2' due to its type
+    LOOP END
+
+    LOOP BEGIN at streamcluster_original.cpp:pgain:554:5
+      554:     for( int i = k1; i < k2; i++ ) {
+
+      [PWR001] streamcluster_original.cpp:361:1 function 'pgain' uses global variables 'is_center', 'center_table'
+      [RMK006] streamcluster_original.cpp:555:27 avoid indirect array access for variable 'gl_lower' to improve performance
+    LOOP END
+    [PWR001] streamcluster_original.cpp:361:1 function 'pgain' uses global variables 'nproc', 'is_center', 'center_table', 'switch_membership'
+  FUNCTION END
+
+CODE COVERAGE
+  Analyzable files:            1 / 1     (100.00 %)
+  Analyzable functions:        1 / 1     (100.00 %)
+  Analyzable loops:            7 / 9     ( 77.78 %)
+  Parallelized SLOCs:          0 / 228   (  0.00 %)
+
+METRICS SUMMARY
+  Total defects:                 0
+  Total recommendations:        11
+  Total remarks:                 5
+  Total opportunities:           6
+  Total data races:              0
+  Total data-race-free:          0
+
+SUGGESTIONS
+
+  Use --level 1|2|3 to get more details, e.g:
+        pwreport --level 3 streamcluster_original.cpp:pgain
+
+  If you want to get an overview of your whole codebase, not only the hotspot, you can use:
+        pwreport --summary .
+
+1 file successfully analyzed and 0 failures in 701 ms

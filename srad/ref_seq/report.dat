@@ -1,0 +1,195 @@
+ACTIONS REPORT
+
+  FUNCTION BEGIN at ./srad.cpp:usage:17:1
+    17: void usage(int argc, char **argv)
+
+    [PWR001] ./srad.cpp:17:1 function 'usage' uses global variable 'stderr'
+  FUNCTION END
+
+  FUNCTION BEGIN at ./srad.cpp:main:33:1
+    33: int main(int argc, char* argv[])
+
+    LOOP BEGIN at ./srad.cpp:main:87:5
+      87:     for (int i=0; i< rows; i++) {
+
+      [OPP001] ./srad.cpp:87:5 is a multi-threading opportunity
+      [OPP002] ./srad.cpp:87:5 is a SIMD opportunity
+      [OPP003] ./srad.cpp:87:5 is a offload opportunity
+    LOOP END
+
+    LOOP BEGIN at ./srad.cpp:main:91:5
+      91:     for (int j=0; j< cols; j++) {
+
+      [OPP001] ./srad.cpp:91:5 is a multi-threading opportunity
+      [OPP002] ./srad.cpp:91:5 is a SIMD opportunity
+      [OPP003] ./srad.cpp:91:5 is a offload opportunity
+    LOOP END
+
+    LOOP BEGIN at ./srad.cpp:main:104:5
+      104:     for (k = 0;  k < size_I; k++ ) {
+
+      [OPP001] ./srad.cpp:104:5 is a multi-threading opportunity
+      [OPP002] ./srad.cpp:104:5 is a SIMD opportunity
+      [OPP003] ./srad.cpp:104:5 is a offload opportunity
+    LOOP END
+
+    LOOP BEGIN at ./srad.cpp:main:111:2
+      111: 	for (iter=0; iter< niter; iter++){
+
+      LOOP BEGIN at ./srad.cpp:main:114:3
+        114: 		for (i=r1; i<=r2; i++) {
+
+        LOOP BEGIN at ./srad.cpp:main:115:13
+          115:             for (j=c1; j<=c2; j++) {
+
+          [PWR002] ./srad.cpp:36:37 'tmp' not declared in the innermost scope possible
+          [RMK001] ./srad.cpp:115:13 Loop nesting that might benefit from hybrid parallelization using multi-threading and SIMD
+          [RMK002] ./srad.cpp:115:13 Loop nesting that might benefit from hybrid parallelization using offloading and SIMD
+
+          [OPP002] ./srad.cpp:115:13 is a SIMD opportunity
+        LOOP END
+        [PWR002] ./srad.cpp:44:9 'j' not declared in the innermost scope possible
+        [PWR002] ./srad.cpp:36:37 'tmp' not declared in the innermost scope possible
+
+        [OPP001] ./srad.cpp:114:3 is a multi-threading opportunity
+        [OPP003] ./srad.cpp:114:3 is a offload opportunity
+      LOOP END
+
+      LOOP BEGIN at ./srad.cpp:main:130:3
+        130: 		for (int i = 0 ; i < rows ; i++) {
+
+        LOOP BEGIN at ./srad.cpp:main:131:13
+          131:             for (int j = 0; j < cols; j++) { 
+
+          [PWR002] ./srad.cpp:37:24 'den' not declared in the innermost scope possible
+          [PWR002] ./srad.cpp:37:29 'qsqr' not declared in the innermost scope possible
+          [PWR002] ./srad.cpp:37:19 'num' not declared in the innermost scope possible
+          [PWR002] ./srad.cpp:37:12 'G2' not declared in the innermost scope possible
+          [PWR002] ./srad.cpp:37:16 'L' not declared in the innermost scope possible
+          [PWR002] ./srad.cpp:35:52 'k' not declared in the innermost scope possible
+          [PWR002] ./srad.cpp:37:8 'Jc' not declared in the innermost scope possible
+          [PWR020] ./srad.cpp:131:13 consider loop fission to enable vectorization
+          [PWR021] ./srad.cpp:131:13 extract temporary computations to a vectorizable loop
+          [RMK006] ./srad.cpp:137:25 avoid indirect array access for variable 'J' to improve performance
+          [RMK006] ./srad.cpp:138:25 avoid indirect array access for variable 'J' to improve performance
+          [RMK006] ./srad.cpp:139:25 avoid indirect array access for variable 'J' to improve performance
+          [RMK006] ./srad.cpp:140:25 avoid indirect array access for variable 'J' to improve performance
+        LOOP END
+        [PWR002] ./srad.cpp:37:24 'den' not declared in the innermost scope possible
+        [PWR002] ./srad.cpp:37:29 'qsqr' not declared in the innermost scope possible
+        [PWR002] ./srad.cpp:37:19 'num' not declared in the innermost scope possible
+        [PWR002] ./srad.cpp:37:12 'G2' not declared in the innermost scope possible
+        [PWR002] ./srad.cpp:37:16 'L' not declared in the innermost scope possible
+        [PWR002] ./srad.cpp:35:52 'k' not declared in the innermost scope possible
+        [PWR002] ./srad.cpp:37:8 'Jc' not declared in the innermost scope possible
+        [RMK005] ./srad.cpp:137:27 avoid non-consecutive array access for variable 'iN' to improve performance
+        [RMK005] ./srad.cpp:138:27 avoid non-consecutive array access for variable 'iS' to improve performance
+        [RMK006] ./srad.cpp:137:25 avoid indirect array access for variable 'J' to improve performance
+        [RMK006] ./srad.cpp:138:25 avoid indirect array access for variable 'J' to improve performance
+        [RMK006] ./srad.cpp:139:25 avoid indirect array access for variable 'J' to improve performance
+        [RMK006] ./srad.cpp:140:25 avoid indirect array access for variable 'J' to improve performance
+      LOOP END
+
+      LOOP BEGIN at ./srad.cpp:main:166:3
+        166: 		for (int i = 0; i < rows; i++) {
+
+        LOOP BEGIN at ./srad.cpp:main:167:13
+          167:             for (int j = 0; j < cols; j++) {        
+
+          [PWR002] ./srad.cpp:42:12 'D' not declared in the innermost scope possible
+          [PWR002] ./srad.cpp:41:17 'cE' not declared in the innermost scope possible
+          [PWR002] ./srad.cpp:41:14 'cW' not declared in the innermost scope possible
+          [PWR002] ./srad.cpp:41:8 'cN' not declared in the innermost scope possible
+          [PWR002] ./srad.cpp:41:11 'cS' not declared in the innermost scope possible
+          [PWR002] ./srad.cpp:35:52 'k' not declared in the innermost scope possible
+          [PWR021] ./srad.cpp:167:13 extract temporary computations to a vectorizable loop
+          [RMK006] ./srad.cpp:176:11 avoid indirect array access for variable 'c' to improve performance
+          [RMK006] ./srad.cpp:174:11 avoid indirect array access for variable 'c' to improve performance
+        LOOP END
+        [PWR002] ./srad.cpp:42:12 'D' not declared in the innermost scope possible
+        [PWR002] ./srad.cpp:41:17 'cE' not declared in the innermost scope possible
+        [PWR002] ./srad.cpp:41:14 'cW' not declared in the innermost scope possible
+        [PWR002] ./srad.cpp:41:8 'cN' not declared in the innermost scope possible
+        [PWR002] ./srad.cpp:41:11 'cS' not declared in the innermost scope possible
+        [PWR002] ./srad.cpp:35:52 'k' not declared in the innermost scope possible
+        [RMK005] ./srad.cpp:174:13 avoid non-consecutive array access for variable 'iS' to improve performance
+        [RMK006] ./srad.cpp:176:11 avoid indirect array access for variable 'c' to improve performance
+        [RMK006] ./srad.cpp:174:11 avoid indirect array access for variable 'c' to improve performance
+      LOOP END
+      [PWR002] ./srad.cpp:44:6 'i' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:44:9 'j' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:36:26 'sum' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:36:42 'meanROI' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:36:37 'tmp' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:36:31 'sum2' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:36:50 'varROI' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:36:19 'q0sqr' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:37:24 'den' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:37:16 'L' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:41:17 'cE' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:41:14 'cW' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:37:8 'Jc' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:41:11 'cS' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:41:8 'cN' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:42:12 'D' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:37:12 'G2' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:37:19 'num' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:37:29 'qsqr' not declared in the innermost scope possible
+      [PWR002] ./srad.cpp:35:52 'k' not declared in the innermost scope possible
+      [RMK005] ./srad.cpp:174:13 avoid non-consecutive array access for variable 'iS' to improve performance
+      [RMK005] ./srad.cpp:138:27 avoid non-consecutive array access for variable 'iS' to improve performance
+      [RMK005] ./srad.cpp:137:27 avoid non-consecutive array access for variable 'iN' to improve performance
+      [RMK006] ./srad.cpp:176:11 avoid indirect array access for variable 'c' to improve performance
+      [RMK006] ./srad.cpp:174:11 avoid indirect array access for variable 'c' to improve performance
+      [RMK006] ./srad.cpp:140:25 avoid indirect array access for variable 'J' to improve performance
+      [RMK006] ./srad.cpp:139:25 avoid indirect array access for variable 'J' to improve performance
+      [RMK006] ./srad.cpp:138:25 avoid indirect array access for variable 'J' to improve performance
+      [RMK006] ./srad.cpp:137:25 avoid indirect array access for variable 'J' to improve performance
+    LOOP END
+    [PWR001] ./srad.cpp:33:1 function 'main' uses global variable 'stderr'
+  FUNCTION END
+
+  FUNCTION BEGIN at ./srad.cpp:random_matrix:222:1
+    222: void random_matrix(float *I, int rows, int cols){
+
+    LOOP BEGIN at ./srad.cpp:random_matrix:226:2
+      226: 	for( int i = 0 ; i < rows ; i++){
+
+      228:22: [ ERROR ] no definition found for function 'rand'
+      LOOP BEGIN at ./srad.cpp:random_matrix:227:3
+        227: 		for ( int j = 0 ; j < cols ; j++){
+
+        228:22: [ ERROR ] no definition found for function 'rand'
+      LOOP END
+    LOOP END
+  FUNCTION END
+
+CODE COVERAGE
+  Analyzable files:            1 / 1     (100.00 %)
+  Analyzable functions:        1 / 3     ( 33.33 %)
+  Analyzable loops:           10 / 12    ( 83.33 %)
+  Parallelized SLOCs:          0 / 215   (  0.00 %)
+
+METRICS SUMMARY
+  Total defects:                 0
+  Total recommendations:        54
+  Total remarks:                26
+  Total opportunities:          12
+  Total data races:              0
+  Total data-race-free:          0
+
+SUGGESTIONS
+
+  2 loops could not be analyzed, get more information with pwloops:
+        pwloops --non-analyzable .
+
+  54 recommendations were found in your code, get more information with pwcheck:
+        pwcheck --only-recommendations .
+
+  12 opportunities for parallelization were found in your code, get more information with pwloops:
+        pwloops .
+
+  You can control the level of detail using --level 1|2|3:
+        pwreport --summary --detail --level 3 .
+
+1 file successfully analyzed and 0 failures in 189 ms

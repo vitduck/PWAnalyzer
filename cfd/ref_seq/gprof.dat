@@ -1,0 +1,24 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ks/call  Ks/call  name    
+ 61.07   1191.20  1191.20        1     1.19     1.95  _GLOBAL__sub_I__Z4dumpPfii
+ 17.86   1539.59   348.39 111651377     0.00     0.00  compute_flux_contribution(float&, float3&, float&, float&, float3&, float3&, float3&, float3&, float3&)
+  6.68   1669.97   130.38 48467953     0.00     0.00  compute_velocity(float&, float3&, float3&)
+  4.68   1761.21    91.24 183423869     0.00     0.00  std::sqrt(float)
+  4.01   1839.44    78.23 80724459     0.00     0.00  compute_pressure(float&, float&, float&)
+  3.36   1905.03    65.59 61190288     0.00     0.00  compute_speed_sqd(float3&)
+  2.30   1949.81    44.78 94550365     0.00     0.00  compute_speed_of_sound(float&, float&)
+  0.11   1951.89     2.08        1     0.00     0.00  void dealloc<int>(int*)
+  0.00   1951.93     0.04                             main
+  0.00   1951.94     0.01        1     0.00     0.00  dump(float*, int, int)
+  0.00   1951.94     0.00     6000     0.00     0.00  compute_flux(int, int*, float*, float*, float*, float*, float3, float3, float3, float3)
+  0.00   1951.94     0.00     6000     0.00     0.00  time_step(int, int, float*, float*, float*, float*)
+  0.00   1951.94     0.00     2000     0.00     0.00  compute_step_factor(int, float*, float*, float*)
+  0.00   1951.94     0.00     2000     0.00     0.00  void copy<float>(float*, float*, int)
+  0.00   1951.94     0.00        6     0.00     0.00  void dealloc<float>(float*)
+  0.00   1951.94     0.00        4     0.00     0.00  float* alloc<float>(int)
+  0.00   1951.94     0.00        1     0.00     0.00  initialize_variables(int, float*, float*)
+  0.00   1951.94     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
+  0.00   1951.94     0.00        1     0.00     0.00  int const& std::min<int>(int const&, int const&)

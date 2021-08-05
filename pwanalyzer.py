@@ -87,9 +87,9 @@ class PwAnalyzer():
             [print(f'{i.strip()}') for i in sorted(list(set(self.pwr)))]
             print() 
 
-    def pwloops(self, hotspot='', level=2): 
+    def pwloops(self, file=''):
         if hotspot: 
-            self.syscmd(f'pwloops --verbose --brief {level} {hotspot} -- {" ".join(self.cflags)}', 'loop.dat')
+            self.syscmd(f'pwloops --verbose --brief {file} -- {" ".join(self.cflags)}', 'loop.dat')
         else: 
             self.syscmd(f'pwloops --verbose --brief . -- {" ".join(self.cflags)}', 'loop.dat')
         

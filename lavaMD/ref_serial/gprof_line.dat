@@ -1,0 +1,23 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+ 26.78      1.53     1.53                             kernel_cpu (kernel_cpu.c:173 @ 4019a8)
+ 13.57      2.31     0.78                             kernel_cpu (kernel_cpu.c:174 @ 401a87)
+  9.19      2.83     0.53                             kernel_cpu (kernel_cpu.c:175 @ 401a99)
+  8.23      3.30     0.47                             kernel_cpu (kernel_cpu.c:186 @ 401c2c)
+  7.35      3.72     0.42                             kernel_cpu (kernel_cpu.c:188 @ 401cd4)
+  7.18      4.14     0.41                             kernel_cpu (kernel_cpu.c:177 @ 401ad2)
+  6.65      4.52     0.38                             kernel_cpu (kernel_cpu.c:185 @ 401bda)
+  5.43      4.83     0.31                             kernel_cpu (kernel_cpu.c:178 @ 401b0e)
+  4.90      5.11     0.28                             kernel_cpu (kernel_cpu.c:187 @ 401c80)
+  4.55      5.37     0.26                             kernel_cpu (kernel_cpu.c:179 @ 401b4a)
+  1.75      5.47     0.10                             kernel_cpu (kernel_cpu.c:176 @ 401abe)
+  1.58      5.56     0.09                             kernel_cpu (kernel_cpu.c:181 @ 401ba2)
+  1.58      5.65     0.09                             kernel_cpu (kernel_cpu.c:182 @ 401bbe)
+  0.88      5.70     0.05                             kernel_cpu (kernel_cpu.c:170 @ 401d28)
+  0.53      5.73     0.03                             kernel_cpu (kernel_cpu.c:180 @ 401b86)
+  0.00      5.73     0.00       13     0.00     0.00  get_time (timer.c:24 @ 401fd7)
+  0.00      5.73     0.00        2     0.00     0.00  isInteger (num.c:20 @ 401f80)
+  0.00      5.73     0.00        1     0.00     0.00  kernel_cpu (kernel_cpu.c:46 @ 4017c0)

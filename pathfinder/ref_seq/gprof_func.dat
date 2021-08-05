@@ -1,0 +1,8 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 69.18      7.17     7.17        1     7.17    10.39  run(int, char**)
+ 31.00     10.39     3.22        1     3.22     3.22  init(int, char**)
+  0.00     10.39     0.00        2     0.00     0.00  rdtsc()

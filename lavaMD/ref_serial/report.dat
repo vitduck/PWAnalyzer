@@ -1,0 +1,50 @@
+ACTIONS REPORT
+
+  FUNCTION BEGIN at ./kernel/kernel_cpu.c:kernel_cpu:40:1
+    40: void  kernel_cpu(	par_str par, 
+
+    LOOP BEGIN at ./kernel/kernel_cpu.c:kernel_cpu:117:2
+      117: 	for(l=0; l<dim.number_boxes; l=l+1){
+
+      117:17: [ ERROR ] unsupported use of the struct variable 'dim'
+      LOOP BEGIN at ./kernel/kernel_cpu.c:kernel_cpu:136:3
+        136: 		for (k=0; k<(1+box[l].nn); k++) 
+
+        136:25: [ ERROR ] unsupported use of the struct variable 'box'
+        LOOP BEGIN at ./kernel/kernel_cpu.c:kernel_cpu:167:4
+          167: 			for (i=0; i<NUMBER_PAR_PER_BOX; i=i+1){
+
+          173:17: [ ERROR ] unsupported use of the struct variable 'rA'
+          LOOP BEGIN at ./kernel/kernel_cpu.c:kernel_cpu:170:5
+            170: 				for (j=0; j<NUMBER_PAR_PER_BOX; j=j+1){
+
+            173:17: [ ERROR ] unsupported use of the struct variable 'rA'
+          LOOP END
+        LOOP END
+      LOOP END
+    LOOP END
+  FUNCTION END
+
+CODE COVERAGE
+  Analyzable files:            1 / 1     (100.00 %)
+  Analyzable functions:        0 / 1     (  0.00 %)
+  Analyzable loops:            0 / 4     (  0.00 %)
+  Parallelized SLOCs:          0 / 169   (  0.00 %)
+
+METRICS SUMMARY
+  Total defects:                 0
+  Total recommendations:         0
+  Total remarks:                 0
+  Total opportunities:           0
+  Total data races:              0
+  Total data-race-free:          0
+
+SUGGESTIONS
+
+  Use --level 1|2|3 to get more details, e.g:
+        pwreport --level 3 ./kernel/kernel_cpu.c:kernel_cpu
+
+  If you want to get an overview of your whole codebase, not only the hotspot, you can use:
+        pwreport --summary ./kernel
+
+1 file successfully analyzed and 0 failures in 98 ms

@@ -1,0 +1,25 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+ 66.75      0.02     0.02                             bpnn_adjust_weights (backprop.c:324 @ 40169b)
+ 33.37      0.03     0.01                             bpnn_layerforward (backprop.c:254 @ 401250)
+  0.00      0.03     0.00   131114     0.00     0.00  alloc_1d_dbl (backprop.c:58 @ 400be0)
+  0.00      0.03     0.00       17     0.00     0.00  squash (backprop.c:45 @ 400b8f)
+  0.00      0.03     0.00        4     0.00     0.00  alloc_2d_dbl (backprop.c:74 @ 400c24)
+  0.00      0.03     0.00        2     0.00     0.00  bpnn_adjust_weights (backprop.c:307 @ 4015c3)
+  0.00      0.03     0.00        2     0.00     0.00  bpnn_layerforward (backprop.c:238 @ 401201)
+  0.00      0.03     0.00        2     0.00     0.00  bpnn_randomize_weights (backprop.c:95 @ 400cad)
+  0.00      0.03     0.00        2     0.00     0.00  bpnn_zero_weights (backprop.c:121 @ 400d7a)
+  0.00      0.03     0.00        1     0.00     0.00  backprop_face (facetrain.c:13 @ 40218d)
+  0.00      0.03     0.00        1     0.00     0.00  bpnn_create (backprop.c:216 @ 40113c)
+  0.00      0.03     0.00        1     0.00     0.00  bpnn_free (backprop.c:173 @ 400fbf)
+  0.00      0.03     0.00        1     0.00     0.00  bpnn_hidden_error (backprop.c:287 @ 401433)
+  0.00      0.03     0.00        1     0.00     0.00  bpnn_initialize (backprop.c:133 @ 400dea)
+  0.00      0.03     0.00        1     0.00     0.00  bpnn_internal_create (backprop.c:141 @ 400e1b)
+  0.00      0.03     0.00        1     0.00     0.00  bpnn_output_error (backprop.c:264 @ 4012f0)
+  0.00      0.03     0.00        1     0.00     0.00  bpnn_randomize_row (backprop.c:109 @ 400d2e)
+  0.00      0.03     0.00        1     0.00     0.00  bpnn_train_kernel (backprop_kernel.c:43 @ 40202b)
+  0.00      0.03     0.00        1     0.00     0.00  load (imagenet.c:10 @ 4022ab)
+  0.00      0.03     0.00        1     0.00     0.00  setup (facetrain.c:30 @ 402226)

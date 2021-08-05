@@ -1,0 +1,229 @@
+ACTIONS REPORT
+
+  FUNCTION BEGIN at /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../include/c++/4.8.5/cmath:sqrt:481:3
+    481:   inline _GLIBCXX_CONSTEXPR float
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./euler3d_cpu.cpp:dump:88:1
+    88: void dump(float* variables, int nel, int nelr)
+
+    LOOP BEGIN at ./euler3d_cpu.cpp:dump:95:3
+      95: 		for(int i = 0; i < nel; i++) file << variables[i + VAR_DENSITY*nelr] << std::endl;
+
+      95:3: [ ERROR ] unsupported loop with premature exit
+    LOOP END
+
+    LOOP BEGIN at ./euler3d_cpu.cpp:dump:102:3
+      102: 		for(int i = 0; i < nel; i++)
+
+      104:80: [ ERROR ] unsupported use of literal data
+      LOOP BEGIN at ./euler3d_cpu.cpp:dump:104:4
+        104: 			for(int j = 0; j != NDIM; j++) file << variables[i + (VAR_MOMENTUM+j)*nelr] << " ";
+
+        104:80: [ ERROR ] unsupported use of literal data
+      LOOP END
+    LOOP END
+
+    LOOP BEGIN at ./euler3d_cpu.cpp:dump:112:3
+      112: 		for(int i = 0; i < nel; i++) file << variables[i + VAR_DENSITY_ENERGY*nelr] << std::endl;
+
+      112:3: [ ERROR ] unsupported loop with premature exit
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./euler3d_cpu.cpp:initialize_variables:117:1
+    117: void initialize_variables(int nelr, float* variables, float* ff_variable)
+
+    LOOP BEGIN at ./euler3d_cpu.cpp:initialize_variables:123:2
+      123: 	for(int i = 0; i < nelr; i++)
+
+      LOOP BEGIN at ./euler3d_cpu.cpp:initialize_variables:126:3
+        126: 		for(int j = 0; j < NVAR; j++) variables[i + j*nelr] = ff_variable[j];
+
+      LOOP END
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./euler3d_cpu.cpp:compute_flux_contribution:134:1
+    134: inline void compute_flux_contribution(float& density, float3& momentum, float& density_energy, float& pressure, float3& velocity, float3& fc_momentum_x, float3& fc_momentum_y, float3& fc_momentum_z, float3& fc_density_energy)
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./euler3d_cpu.cpp:compute_velocity:154:1
+    154: inline void compute_velocity(float& density, float3& momentum, float3& velocity)
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./euler3d_cpu.cpp:compute_speed_sqd:161:1
+    161: inline float compute_speed_sqd(float3& velocity)
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./euler3d_cpu.cpp:compute_pressure:166:1
+    166: inline float compute_pressure(float& density, float& density_energy, float& speed_sqd)
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./euler3d_cpu.cpp:compute_speed_of_sound:171:1
+    171: inline float compute_speed_of_sound(float& density, float& pressure)
+
+  FUNCTION END
+
+  FUNCTION BEGIN at ./euler3d_cpu.cpp:compute_step_factor:177:1
+    177: void compute_step_factor(int nelr, float* __restrict variables, float* areas, float* __restrict step_factors)
+
+    LOOP BEGIN at ./euler3d_cpu.cpp:compute_step_factor:180:9
+      180:         for(int blk = 0; blk < nelr/block_length; ++blk)
+
+      483:12: [ ERROR ] unrecognized unsupported feature
+      483:12: [ ERROR ] unrecognized unsupported feature
+      483:12: [ ERROR ] unrecognized unsupported feature
+      LOOP BEGIN at ./euler3d_cpu.cpp:compute_step_factor:185:2
+        185: 	for(int i = b_start; i < b_end; i++)
+
+        483:12: [ ERROR ] unrecognized unsupported feature
+        483:12: [ ERROR ] unrecognized unsupported feature
+        483:12: [ ERROR ] unrecognized unsupported feature
+      LOOP END
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./euler3d_cpu.cpp:compute_flux:212:1
+    212: void compute_flux(int nelr, int* elements_surrounding_elements, float* normals, float* variables, float* fluxes, float* ff_variable, float3 ff_flux_contribution_momentum_x, float3 ff_flux_contribution_momentum_y, float3 ff_flux_contribution_momentum_z, float3 ff_flux_contribution_density_energy)
+
+    LOOP BEGIN at ./euler3d_cpu.cpp:compute_flux:217:9
+      217:         for(int blk = 0; blk < nelr/block_length; ++blk)
+
+      483:12: [ ERROR ] unrecognized unsupported feature
+      483:12: [ ERROR ] unrecognized unsupported feature
+      483:12: [ ERROR ] unrecognized unsupported feature
+      483:12: [ ERROR ] unrecognized unsupported feature
+      483:12: [ ERROR ] unrecognized unsupported feature
+      LOOP BEGIN at ./euler3d_cpu.cpp:compute_flux:222:2
+        222: 	for(int i = b_start; i < b_end; ++i)
+
+        483:12: [ ERROR ] unrecognized unsupported feature
+        483:12: [ ERROR ] unrecognized unsupported feature
+        483:12: [ ERROR ] unrecognized unsupported feature
+        483:12: [ ERROR ] unrecognized unsupported feature
+        483:12: [ ERROR ] unrecognized unsupported feature
+        LOOP BEGIN at ./euler3d_cpu.cpp:compute_flux:255:3
+          255: 		for(int j = 0; j < NNB; j++)
+
+          483:12: [ ERROR ] unrecognized unsupported feature
+          483:12: [ ERROR ] unrecognized unsupported feature
+          483:12: [ ERROR ] unrecognized unsupported feature
+        LOOP END
+      LOOP END
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./euler3d_cpu.cpp:time_step:350:1
+    350: void time_step(int j, int nelr, float* old_variables, float* variables, float* step_factors, float* fluxes)
+
+    LOOP BEGIN at ./euler3d_cpu.cpp:time_step:353:5
+      353:     for(int blk = 0; blk < nelr/block_length; ++blk)
+
+      LOOP BEGIN at ./euler3d_cpu.cpp:time_step:358:9
+        358:         for(int i = b_start; i < b_end; ++i)
+
+        [PWR021] ./euler3d_cpu.cpp:358:9 extract temporary computation to a vectorizable loop
+      LOOP END
+    LOOP END
+  FUNCTION END
+
+  FUNCTION BEGIN at ./euler3d_cpu.cpp:main:377:1
+    377: int main(int argc, char** argv)
+
+    LOOP BEGIN at ./euler3d_cpu.cpp:main:435:3
+      435: 		for(int i = 0; i < nel; i++)
+
+      435:3: [ ERROR ] unsupported loop with premature exit
+      LOOP BEGIN at ./euler3d_cpu.cpp:main:438:4
+        438: 			for(int j = 0; j < NNB; j++)
+
+        438:4: [ ERROR ] unsupported loop with premature exit
+        LOOP BEGIN at ./euler3d_cpu.cpp:main:444:5
+          444: 				for(int k = 0; k < NDIM; k++)
+
+          444:5: [ ERROR ] unsupported loop with premature exit
+        LOOP END
+      LOOP END
+    LOOP END
+
+    LOOP BEGIN at ./euler3d_cpu.cpp:main:454:3
+      454: 		for(int i = nel; i < nelr; i++)
+
+      LOOP BEGIN at ./euler3d_cpu.cpp:main:457:4
+        457: 			for(int j = 0; j < NNB; j++)
+
+        LOOP BEGIN at ./euler3d_cpu.cpp:main:461:5
+          461: 				for(int k = 0; k < NDIM; k++) normals[i + (j + k*NNB)*nelr] = normals[last + (j + k*NNB)*nelr];
+
+        LOOP END
+      LOOP END
+    LOOP END
+
+    LOOP BEGIN at ./euler3d_cpu.cpp:main:483:2
+      483: 	for(int i = 0; i < iterations; i++)
+
+      492:95: [ ERROR ] unsupported use of variable
+      492:128: [ ERROR ] unsupported use of variable
+      492:161: [ ERROR ] unsupported use of variable
+      492:194: [ ERROR ] unsupported use of variable
+      485:17: [ ERROR ] no definition found for function '_Z4copyIfEvPT_S1_i'
+      483:12: [ ERROR ] unrecognized unsupported feature
+      483:12: [ ERROR ] unrecognized unsupported feature
+      483:12: [ ERROR ] unrecognized unsupported feature
+      483:12: [ ERROR ] unrecognized unsupported feature
+      483:12: [ ERROR ] unrecognized unsupported feature
+      483:12: [ ERROR ] unrecognized unsupported feature
+      483:12: [ ERROR ] unrecognized unsupported feature
+      483:12: [ ERROR ] unrecognized unsupported feature
+      LOOP BEGIN at ./euler3d_cpu.cpp:main:490:3
+        490: 		for(int j = 0; j < RK; j++)
+
+        492:95: [ ERROR ] unsupported use of variable
+        492:128: [ ERROR ] unsupported use of variable
+        492:161: [ ERROR ] unsupported use of variable
+        492:194: [ ERROR ] unsupported use of variable
+        483:12: [ ERROR ] unrecognized unsupported feature
+        483:12: [ ERROR ] unrecognized unsupported feature
+        483:12: [ ERROR ] unrecognized unsupported feature
+        483:12: [ ERROR ] unrecognized unsupported feature
+        483:12: [ ERROR ] unrecognized unsupported feature
+      LOOP END
+    LOOP END
+    [PWR001] ./euler3d_cpu.cpp:377:1 function 'main' uses global variable 'cout'
+  FUNCTION END
+
+CODE COVERAGE
+  Analyzable files:            1 / 1     (100.00 %)
+  Analyzable functions:        4 / 12    ( 33.33 %)
+  Analyzable loops:            7 / 21    ( 33.33 %)
+  Parallelized SLOCs:          9 / 398   (  2.26 %)
+
+METRICS SUMMARY
+  Total defects:                 0
+  Total recommendations:         2
+  Total remarks:                 0
+  Total opportunities:           0
+  Total data races:              0
+  Total data-race-free:          0
+
+SUGGESTIONS
+
+  14 loops could not be analyzed, get more information with pwloops:
+        pwloops --non-analyzable .
+
+  2 recommendations were found in your code, get more information with pwcheck:
+        pwcheck --only-recommendations .
+
+  9 lines of code in parallel regions were found in your code, get more information with pwreport:
+        pwreport --parallelization .
+
+  You can control the level of detail using --level 1|2|3:
+        pwreport --summary --detail --level 3 .
+
+1 file successfully analyzed and 0 failures in 780 ms

@@ -1,0 +1,23 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+ 14.35      0.03     0.03                             BFSGraph(int, char**) (bfs.cpp:144 @ 400d33)
+  9.56      0.05     0.02                             BFSGraph(int, char**) (bfs.cpp:101 @ 400be2)
+  9.56      0.07     0.02                             BFSGraph(int, char**) (bfs.cpp:141 @ 400ccd)
+  7.17      0.09     0.02                             BFSGraph(int, char**) (bfs.cpp:139 @ 400ca5)
+  7.17      0.10     0.02                             BFSGraph(int, char**) (bfs.cpp:146 @ 400d4a)
+  7.17      0.12     0.02                             BFSGraph(int, char**) (bfs.cpp:137 @ 400d92)
+  7.17      0.13     0.02                             BFSGraph(int, char**) (bfs.cpp:161 @ 400daa)
+  7.17      0.15     0.02                             BFSGraph(int, char**) (bfs.cpp:159 @ 400df2)
+  4.78      0.16     0.01                             BFSGraph(int, char**) (bfs.cpp:78 @ 400ac2)
+  4.78      0.17     0.01                             BFSGraph(int, char**) (bfs.cpp:111 @ 400c43)
+  4.78      0.18     0.01                             BFSGraph(int, char**) (bfs.cpp:137 @ 400c92)
+  4.78      0.19     0.01                             BFSGraph(int, char**) (bfs.cpp:180 @ 400e58)
+  2.39      0.19     0.01                             BFSGraph(int, char**) (bfs.cpp:140 @ 400cbd)
+  2.39      0.20     0.01                             BFSGraph(int, char**) (bfs.cpp:147 @ 400d79)
+  2.39      0.20     0.01                             BFSGraph(int, char**) (bfs.cpp:141 @ 400d89)
+  2.39      0.21     0.01                             BFSGraph(int, char**) (bfs.cpp:159 @ 400d9b)
+  2.39      0.21     0.01                             BFSGraph(int, char**) (bfs.cpp:165 @ 400de2)
+  0.00      0.21     0.00        1     0.00     0.00  BFSGraph(int, char**) (bfs.cpp:40 @ 400965)

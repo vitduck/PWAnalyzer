@@ -1,0 +1,14 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+ 50.79      0.72     0.72                             lud_base (lud_base.c:9 @ 40106c)
+ 47.62      1.40     0.68                             lud_base (lud_base.c:15 @ 401147)
+  1.06      1.41     0.02                             lud_base (lud_base.c:14 @ 40111f)
+  0.71      1.42     0.01                             lud_base (lud_base.c:16 @ 4011b4)
+  0.00      1.42     0.00        1     0.00     0.00  create_matrix_from_file (common.c:41 @ 401369)
+  0.00      1.42     0.00        1     0.00     0.00  get_interval_by_sec (common.c:27 @ 4012b0)
+  0.00      1.42     0.00        1     0.00     0.00  lud_base (lud_base.c:2 @ 401019)
+  0.00      1.42     0.00        1     0.00     0.00  stopwatch_start (common.c:9 @ 401226)
+  0.00      1.42     0.00        1     0.00     0.00  stopwatch_stop (common.c:19 @ 40127e)

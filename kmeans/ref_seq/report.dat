@@ -1,0 +1,101 @@
+ACTIONS REPORT
+
+  FUNCTION BEGIN at kmeans_clustering.c:kmeans_clustering:115:1
+    115: float** kmeans_clustering(float **feature,    /* in: [npoints][nfeatures] */
+
+    LOOP BEGIN at kmeans_clustering.c:kmeans_clustering:133:5
+      133:     for (i=1; i<nclusters; i++)
+
+      134:21: [ ERROR ] unsupported pointer assignment for variable 'clusters'
+    LOOP END
+
+    LOOP BEGIN at kmeans_clustering.c:kmeans_clustering:137:5
+      137:     for (i=0; i<nclusters; i++) {
+
+      LOOP BEGIN at kmeans_clustering.c:kmeans_clustering:139:9
+        139:         for (j=0; j<nfeatures; j++)
+
+        [OPP001] kmeans_clustering.c:139:9 is a multi-threading opportunity
+        [OPP002] kmeans_clustering.c:139:9 is a SIMD opportunity
+        [OPP003] kmeans_clustering.c:139:9 is a offload opportunity
+      LOOP END
+      [PWR002] kmeans_clustering.c:123:17 'j' not declared in the innermost scope possible
+    LOOP END
+
+    LOOP BEGIN at kmeans_clustering.c:kmeans_clustering:144:5
+      144:     for (i=0; i<npoints; i++)
+
+      [OPP001] kmeans_clustering.c:144:5 is a multi-threading opportunity
+      [OPP002] kmeans_clustering.c:144:5 is a SIMD opportunity
+      [OPP003] kmeans_clustering.c:144:5 is a offload opportunity
+    LOOP END
+
+    LOOP BEGIN at kmeans_clustering.c:kmeans_clustering:152:5
+      152:     for (i=1; i<nclusters; i++)
+
+      153:24: [ ERROR ] unsupported pointer assignment for variable 'new_centers'
+    LOOP END
+
+    LOOP BEGIN at kmeans_clustering.c:kmeans_clustering:156:5
+      156:     do {
+
+      LOOP BEGIN at kmeans_clustering.c:kmeans_clustering:160:9
+        160:         for (i=0; i<npoints; i++) {
+
+        LOOP BEGIN at kmeans_clustering.c:kmeans_clustering:171:10
+          171: 	        for (j=0; j<nfeatures; j++)          
+
+          [OPP001] kmeans_clustering.c:171:10 is a multi-threading opportunity
+          [OPP002] kmeans_clustering.c:171:10 is a SIMD opportunity
+          [OPP003] kmeans_clustering.c:171:10 is a offload opportunity
+        LOOP END
+        [PWR002] kmeans_clustering.c:123:17 'j' not declared in the innermost scope possible
+        [PWR002] kmeans_clustering.c:123:25 'index' not declared in the innermost scope possible
+        [PWR021] kmeans_clustering.c:160:9 extract temporary computation to a vectorizable loop
+        [RMK005] kmeans_clustering.c:162:37 avoid non-consecutive array access for variable 'feature' to improve performance
+      LOOP END
+
+      LOOP BEGIN at kmeans_clustering.c:kmeans_clustering:177:9
+        177:         for (i=0; i<nclusters; i++) {
+
+        LOOP BEGIN at kmeans_clustering.c:kmeans_clustering:178:13
+          178:             for (j=0; j<nfeatures; j++) {
+
+        LOOP END
+        [PWR002] kmeans_clustering.c:123:17 'j' not declared in the innermost scope possible
+        [RMK005] kmeans_clustering.c:179:21 avoid non-consecutive array access for variable 'new_centers_len' to improve performance
+        [RMK005] kmeans_clustering.c:180:43 avoid non-consecutive array access for variable 'new_centers_len' to improve performance
+      LOOP END
+      [PWR002] kmeans_clustering.c:123:14 'i' not declared in the innermost scope possible
+      [PWR002] kmeans_clustering.c:123:17 'j' not declared in the innermost scope possible
+      [PWR002] kmeans_clustering.c:125:14 'delta' not declared in the innermost scope possible
+      [PWR002] kmeans_clustering.c:123:25 'index' not declared in the innermost scope possible
+      [RMK005] kmeans_clustering.c:162:37 avoid non-consecutive array access for variable 'feature' to improve performance
+      [RMK005] kmeans_clustering.c:179:21 avoid non-consecutive array access for variable 'new_centers_len' to improve performance
+      [RMK005] kmeans_clustering.c:180:43 avoid non-consecutive array access for variable 'new_centers_len' to improve performance
+    LOOP END
+  FUNCTION END
+
+CODE COVERAGE
+  Analyzable files:            1 / 1     (100.00 %)
+  Analyzable functions:        1 / 1     (100.00 %)
+  Analyzable loops:            8 / 10    ( 80.00 %)
+  Parallelized SLOCs:          0 / 75    (  0.00 %)
+
+METRICS SUMMARY
+  Total defects:                 0
+  Total recommendations:         9
+  Total remarks:                 6
+  Total opportunities:           9
+  Total data races:              0
+  Total data-race-free:          0
+
+SUGGESTIONS
+
+  Use --level 1|2|3 to get more details, e.g:
+        pwreport --level 3 kmeans_clustering.c:kmeans_clustering
+
+  If you want to get an overview of your whole codebase, not only the hotspot, you can use:
+        pwreport --summary .
+
+1 file successfully analyzed and 0 failures in 102 ms

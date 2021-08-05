@@ -1,0 +1,11 @@
+[ INFO  ] pathfinder.cpp:49:5: Parallel forall: variable 'result'
+[ INFO  ] pathfinder.cpp:98:9: Parallel forall: variable 'dst'
+Loop            Analyzable Compute patterns Opportunity          Auto-Parallelizable Parallelized
+--------------- ---------- ---------------- -------------------- ------------------- ------------
+pathfinder.cpp
+|- init:35:2
+|- init:42:2
+|  `- init:44:9
+|- init:49:5     x         forall           simd, multi, offload  x
+`- run:94:5
+   `- run:98:9   x         forall           simd, multi, offload  x

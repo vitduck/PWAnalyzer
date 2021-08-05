@@ -1,0 +1,42 @@
+[ INFO  ] ./srad.cpp:87:5: Parallel forall: variable 'iS'
+[ INFO  ] ./srad.cpp:87:5: Parallel forall: variable 'iN'
+[ INFO  ] ./srad.cpp:91:5: Parallel forall: variable 'jE'
+[ INFO  ] ./srad.cpp:91:5: Parallel forall: variable 'jW'
+[ INFO  ] ./srad.cpp:104:5: Parallel forall: variable 'J'
+[ INFO  ] ./srad.cpp:111:2: Sequential loop identified
+[ INFO  ] ./srad.cpp:111:2: Loop-carried dependencies inhibit parallelization: variable(s) 'c'
+[ INFO  ] ./srad.cpp:114:3: Parallel scalar reduction pattern identified for variable 'sum2' with associative, commutative operator '+'
+[ INFO  ] ./srad.cpp:114:3: Parallel scalar reduction pattern identified for variable 'sum' with associative, commutative operator '+'
+[ INFO  ] ./srad.cpp:115:13: Parallel scalar reduction pattern identified for variable 'sum2' with associative, commutative operator '+'
+[ INFO  ] ./srad.cpp:115:13: Parallel scalar reduction pattern identified for variable 'sum' with associative, commutative operator '+'
+[ INFO  ] ./srad.cpp:130:3: Sequential loop identified
+[ INFO  ] ./srad.cpp:130:3: Parallel forall: variable 'dN'
+[ INFO  ] ./srad.cpp:130:3: Parallel forall: variable 'dS'
+[ INFO  ] ./srad.cpp:130:3: Parallel forall: variable 'dW'
+[ INFO  ] ./srad.cpp:130:3: Parallel forall: variable 'dE'
+[ INFO  ] ./srad.cpp:130:3: Loop-carried dependencies inhibit parallelization: variable(s) 'c'
+[ INFO  ] ./srad.cpp:131:13: Sequential loop identified
+[ INFO  ] ./srad.cpp:131:13: Parallel forall: variable 'dN'
+[ INFO  ] ./srad.cpp:131:13: Parallel forall: variable 'dS'
+[ INFO  ] ./srad.cpp:131:13: Parallel forall: variable 'dW'
+[ INFO  ] ./srad.cpp:131:13: Parallel forall: variable 'dE'
+[ INFO  ] ./srad.cpp:131:13: Loop-carried dependencies inhibit parallelization: variable(s) 'c'
+[ INFO  ] ./srad.cpp:166:3: Sequential loop identified
+[ INFO  ] ./srad.cpp:166:3: Loop-carried dependencies inhibit parallelization: variable(s) 'J'
+[ INFO  ] ./srad.cpp:167:13: Sequential loop identified
+[ INFO  ] ./srad.cpp:167:13: Loop-carried dependencies inhibit parallelization: variable(s) 'J'
+Loop                      Analyzable Compute patterns Opportunity          Auto-Parallelizable Parallelized
+------------------------- ---------- ---------------- -------------------- ------------------- ------------
+./srad.cpp
+|- main:87:5               x         forall           simd, multi, offload  x
+|- main:91:5               x         forall           simd, multi, offload  x
+|- main:104:5              x         forall           simd, multi, offload  x
+|- main:111:2              x         n/a
+|  |- main:114:3           x         scalar           multi, offload        x
+|  |  `- main:115:13       x         scalar           simd                  x
+|  |- main:130:3           x         forall, n/a
+|  |  `- main:131:13       x         forall, n/a
+|  `- main:166:3           x         n/a
+|     `- main:167:13       x         n/a
+`- random_matrix:226:2
+   `- random_matrix:227:3

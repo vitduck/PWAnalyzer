@@ -1,0 +1,40 @@
+[ INFO  ] kmeans_clustering.c:86:5: Sequential loop identified
+[ INFO  ] kmeans_clustering.c:86:5: Loop-carried dependencies inhibit parallelization: variable(s) 'min_dist'
+[ INFO  ] kmeans_clustering.c:107:5: Parallel scalar reduction pattern identified for variable 'ans' with associative, commutative operator '+'
+[ INFO  ] kmeans_clustering.c:137:5: Sequential loop identified
+[ INFO  ] kmeans_clustering.c:137:5: Parallel scalar reduction pattern identified for variable 'n' with associative, commutative operator '+'
+[ INFO  ] kmeans_clustering.c:137:5: Parallel forall: variable 'clusters'
+[ INFO  ] kmeans_clustering.c:137:5: Loop-carried dependencies inhibit parallelization: variable(s) 'clusters'
+[ INFO  ] kmeans_clustering.c:139:9: Parallel forall: variable 'clusters'
+[ INFO  ] kmeans_clustering.c:144:5: Parallel forall: variable 'membership'
+[ INFO  ] kmeans_clustering.c:156:5: Sequential loop identified
+[ INFO  ] kmeans_clustering.c:156:5: Loop-carried dependencies inhibit parallelization: variable(s) 'new_centers_len'
+[ INFO  ] kmeans_clustering.c:160:9: Sequential loop identified
+[ INFO  ] kmeans_clustering.c:160:9: Parallel sparse reduction pattern identified for variable 'new_centers' with associative, commutative operator '+'
+[ INFO  ] kmeans_clustering.c:160:9: Parallel forall: variable 'membership'
+[ INFO  ] kmeans_clustering.c:160:9: Loop-carried dependencies inhibit parallelization: variable(s) 'delta'
+[ INFO  ] kmeans_clustering.c:171:10: Parallel forall: variable 'new_centers'
+[ INFO  ] kmeans_clustering.c:177:9: Sequential loop identified
+[ INFO  ] kmeans_clustering.c:177:9: Parallel forall: variable 'new_centers'
+[ INFO  ] kmeans_clustering.c:177:9: Parallel forall: variable 'new_centers_len'
+[ INFO  ] kmeans_clustering.c:177:9: Parallel forall: variable 'clusters'
+[ INFO  ] kmeans_clustering.c:177:9: Loop-carried dependencies inhibit parallelization: variable(s) 'clusters'
+[ INFO  ] kmeans_clustering.c:178:13: Sequential loop identified
+[ INFO  ] kmeans_clustering.c:178:13: Parallel forall: variable 'new_centers'
+[ INFO  ] kmeans_clustering.c:178:13: Parallel forall: variable 'clusters'
+[ INFO  ] kmeans_clustering.c:178:13: Loop-carried dependencies inhibit parallelization: variable(s) 'clusters'
+Loop                              Analyzable Compute patterns    Opportunity          Auto-Parallelizable Parallelized
+--------------------------------- ---------- ------------------- -------------------- ------------------- ------------
+kmeans_clustering.c
+|- find_nearest_point:86:5         x         n/a, scalar
+|- euclid_dist_2:107:5             x         scalar              simd, multi, offload  x
+|- kmeans_clustering:133:5
+|- kmeans_clustering:137:5         x         scalar, forall, dep
+|  `- kmeans_clustering:139:9      x         forall              simd, multi, offload  x
+|- kmeans_clustering:144:5         x         forall              simd, multi, offload  x
+|- kmeans_clustering:152:5
+`- kmeans_clustering:156:5         x         n/a
+   |- kmeans_clustering:160:9      x         forall, sparse, n/a
+   |  `- kmeans_clustering:171:10  x         forall              simd, multi, offload  x
+   `- kmeans_clustering:177:9      x         forall, dep
+      `- kmeans_clustering:178:13  x         forall, dep

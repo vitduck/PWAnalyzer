@@ -1,0 +1,24 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+ 67.63      4.38     4.38                             computeTempCPU (3D.c:110 @ 40115f)
+  5.72      4.75     0.37                             computeTempCPU (3D.c:100 @ 4010a5)
+  5.18      5.09     0.34                             computeTempCPU (3D.c:107 @ 40113b)
+  4.79      5.40     0.31                             computeTempCPU (3D.c:105 @ 401104)
+  4.64      5.70     0.30                             computeTempCPU (3D.c:106 @ 40111f)
+  3.56      5.93     0.23                             computeTempCPU (3D.c:104 @ 4010f0)
+  3.40      6.15     0.22                             computeTempCPU (3D.c:102 @ 4010c3)
+  2.01      6.28     0.13                             computeTempCPU (3D.c:98 @ 401099)
+  2.01      6.41     0.13                             computeTempCPU (3D.c:103 @ 4010d7)
+  0.31      6.43     0.02                             readinput (3D.c:49 @ 400db0)
+  0.31      6.45     0.02                             writeoutput (3D.c:70 @ 400ebd)
+  0.15      6.46     0.01                             accuracy (3D.c:127 @ 40132c)
+  0.15      6.47     0.01                             computeTempCPU (3D.c:98 @ 4012a1)
+  0.15      6.48     0.01                             readinput (3D.c:42 @ 400df4)
+  0.15      6.49     0.01                             writeoutput (3D.c:68 @ 400f33)
+  0.00      6.49     0.00        2     0.00     0.00  computeTempCPU (3D.c:84 @ 400f7b)
+  0.00      6.49     0.00        2     0.00     0.00  readinput (3D.c:30 @ 400cc3)
+  0.00      6.49     0.00        1     0.00     0.00  accuracy (3D.c:122 @ 4012ff)
+  0.00      6.49     0.00        1     0.00     0.00  writeoutput (3D.c:57 @ 400e3c)

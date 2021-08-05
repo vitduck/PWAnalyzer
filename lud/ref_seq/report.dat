@@ -1,0 +1,62 @@
+Compiler flags: -I../include
+
+ACTIONS REPORT
+
+  FUNCTION BEGIN at lud_base.c:lud_base:1:1
+    1: void lud_base(float *a, int size)
+
+    LOOP BEGIN at lud_base.c:lud_base:6:6
+      6:      for (i=0; i<size; i++){
+
+      LOOP BEGIN at lud_base.c:lud_base:7:10
+        7:          for (j=i; j<size; j++){
+
+        LOOP BEGIN at lud_base.c:lud_base:9:14
+          9:              for (k=0; k<i; k++) sum -= a[i*size+k]*a[k*size+j];
+
+        LOOP END
+        [PWR002] lud_base.c:3:14 'k' not declared in the innermost scope possible
+        [PWR002] lud_base.c:4:12 'sum' not declared in the innermost scope possible
+        [PWR021] lud_base.c:7:10 extract temporary computation to a vectorizable loop
+      LOOP END
+
+      LOOP BEGIN at lud_base.c:lud_base:13:10
+        13:          for (j=i+1;j<size; j++){
+
+        LOOP BEGIN at lud_base.c:lud_base:15:14
+          15:              for (k=0; k<i; k++) sum -=a[j*size+k]*a[k*size+i];
+
+        LOOP END
+        [PWR002] lud_base.c:3:14 'k' not declared in the innermost scope possible
+        [PWR002] lud_base.c:4:12 'sum' not declared in the innermost scope possible
+        [PWR021] lud_base.c:13:10 extract temporary computation to a vectorizable loop
+      LOOP END
+      [PWR002] lud_base.c:3:12 'j' not declared in the innermost scope possible
+      [PWR002] lud_base.c:3:14 'k' not declared in the innermost scope possible
+      [PWR002] lud_base.c:4:12 'sum' not declared in the innermost scope possible
+    LOOP END
+  FUNCTION END
+
+CODE COVERAGE
+  Analyzable files:            1 / 1     (100.00 %)
+  Analyzable functions:        1 / 1     (100.00 %)
+  Analyzable loops:            5 / 5     (100.00 %)
+  Parallelized SLOCs:          0 / 18    (  0.00 %)
+
+METRICS SUMMARY
+  Total defects:                 0
+  Total recommendations:         9
+  Total remarks:                 0
+  Total opportunities:           0
+  Total data races:              0
+  Total data-race-free:          0
+
+SUGGESTIONS
+
+  Use --level 1|2|3 to get more details, e.g:
+        pwreport --level 3 lud_base.c:lud_base -- -I../include
+
+  If you want to get an overview of your whole codebase, not only the hotspot, you can use:
+        pwreport --summary . -- -I../include
+
+1 file successfully analyzed and 0 failures in 19 ms

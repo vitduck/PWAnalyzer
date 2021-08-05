@@ -1,0 +1,23 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 66.75      0.02     0.02        2    10.01    10.01  bpnn_adjust_weights
+ 33.37      0.03     0.01        2     5.01     5.01  bpnn_layerforward
+  0.00      0.03     0.00   131114     0.00     0.00  alloc_1d_dbl
+  0.00      0.03     0.00       17     0.00     0.00  squash
+  0.00      0.03     0.00        4     0.00     0.00  alloc_2d_dbl
+  0.00      0.03     0.00        2     0.00     0.00  bpnn_randomize_weights
+  0.00      0.03     0.00        2     0.00     0.00  bpnn_zero_weights
+  0.00      0.03     0.00        1     0.00    30.04  backprop_face
+  0.00      0.03     0.00        1     0.00     0.00  bpnn_create
+  0.00      0.03     0.00        1     0.00     0.00  bpnn_free
+  0.00      0.03     0.00        1     0.00     0.00  bpnn_hidden_error
+  0.00      0.03     0.00        1     0.00     0.00  bpnn_initialize
+  0.00      0.03     0.00        1     0.00     0.00  bpnn_internal_create
+  0.00      0.03     0.00        1     0.00     0.00  bpnn_output_error
+  0.00      0.03     0.00        1     0.00     0.00  bpnn_randomize_row
+  0.00      0.03     0.00        1     0.00    30.04  bpnn_train_kernel
+  0.00      0.03     0.00        1     0.00     0.00  load
+  0.00      0.03     0.00        1     0.00    30.04  setup

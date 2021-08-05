@@ -1,0 +1,10 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 75.99     10.62    10.62 81920000     0.00     0.00  euclid_dist_2
+ 17.63     13.09     2.47        1     2.47    13.78  kmeans_clustering
+  4.95     13.78     0.69 16384000     0.00     0.00  find_nearest_point
+  1.65     14.01     0.23                             main
+  0.00     14.01     0.00        1     0.00    13.78  cluster

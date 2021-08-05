@@ -1,0 +1,14 @@
+[ INFO  ] ./bfs.cpp:110:2: Parallel forall: variable 'h_cost'
+[ INFO  ] ./bfs.cpp:159:13: Sequential loop identified
+[ INFO  ] ./bfs.cpp:159:13: Loop-carried dependencies inhibit parallelization: variable(s) 'h_updating_graph_mask'
+Loop                     Analyzable Compute patterns Opportunity          Auto-Parallelizable Parallelized
+------------------------ ---------- ---------------- -------------------- ------------------- ------------
+./bfs.cpp
+|- BFSGraph:75:2
+|- BFSGraph:97:2
+|- BFSGraph:110:2         x         forall           simd, multi, offload  x
+|- BFSGraph:125:2
+|  |- BFSGraph:137:13
+|  |  `- BFSGraph:141:21
+|  `- BFSGraph:159:13     x         n/a
+`- BFSGraph:180:2

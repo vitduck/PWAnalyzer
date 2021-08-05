@@ -1,0 +1,22 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+ 16.12      0.05     0.05                             BFSGraph(int, char**) [clone ._omp_fn.0] (bfs.cpp:144 @ 40121e)
+ 14.33      0.09     0.04                             BFSGraph(int, char**) [clone ._omp_fn.1] (bfs.cpp:161 @ 401307)
+ 12.54      0.12     0.04                             BFSGraph(int, char**) [clone ._omp_fn.0] (bfs.cpp:143 @ 401205)
+ 10.75      0.15     0.03                             BFSGraph(int, char**) [clone ._omp_fn.0] (bfs.cpp:139 @ 401186)
+  7.17      0.17     0.02                             BFSGraph(int, char**) (bfs.cpp:101 @ 400e65)
+  7.17      0.19     0.02                             BFSGraph(int, char**) [clone ._omp_fn.0] (bfs.cpp:141 @ 4011b8)
+  7.17      0.21     0.02                             BFSGraph(int, char**) [clone ._omp_fn.0] (bfs.cpp:146 @ 40123b)
+  3.58      0.22     0.01                             BFSGraph(int, char**) (bfs.cpp:78 @ 400d30)
+  3.58      0.23     0.01                             BFSGraph(int, char**) (bfs.cpp:99 @ 400e25)
+  3.58      0.24     0.01                             BFSGraph(int, char**) (bfs.cpp:181 @ 401050)
+  3.58      0.25     0.01                             BFSGraph(int, char**) [clone ._omp_fn.0] (bfs.cpp:140 @ 4011a8)
+  3.58      0.26     0.01                             BFSGraph(int, char**) [clone ._omp_fn.1] (bfs.cpp:163 @ 401336)
+  1.79      0.27     0.01                             BFSGraph(int, char**) [clone ._omp_fn.0] (bfs.cpp:141 @ 401235)
+  1.79      0.27     0.01                             BFSGraph(int, char**) [clone ._omp_fn.0] (bfs.cpp:147 @ 40126a)
+  1.79      0.28     0.01                             BFSGraph(int, char**) [clone ._omp_fn.1] (bfs.cpp:159 @ 4012ca)
+  1.79      0.28     0.01                             BFSGraph(int, char**) [clone ._omp_fn.1] (bfs.cpp:162 @ 401326)
+  0.00      0.28     0.00        1     0.00     0.00  BFSGraph(int, char**) (bfs.cpp:40 @ 400bb5)

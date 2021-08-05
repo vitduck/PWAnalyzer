@@ -1,0 +1,29 @@
+[ INFO  ] 3D.c:96:9: Sequential loop identified
+[ INFO  ] 3D.c:96:9: Loop-carried dependencies inhibit parallelization: variable(s) 'tOut'
+[ INFO  ] 3D.c:97:13: Sequential loop identified
+[ INFO  ] 3D.c:97:13: Loop-carried dependencies inhibit parallelization: variable(s) 'tOut'
+[ INFO  ] 3D.c:98:17: Parallel forall: variable 'tOut'
+[ INFO  ] 3D.c:125:5: Parallel scalar reduction pattern identified for variable 'err' with associative, commutative operator '+'
+[ INFO  ] 3D.c:162:13: Sequential loop identified
+[ INFO  ] 3D.c:162:13: Loop-carried dependencies inhibit parallelization: variable(s) 'tOut_t'
+[ INFO  ] 3D.c:164:17: Sequential loop identified
+[ INFO  ] 3D.c:164:17: Loop-carried dependencies inhibit parallelization: variable(s) 'tOut_t'
+[ INFO  ] 3D.c:166:21: Parallel forall: variable 'tOut_t'
+Loop                              Analyzable Compute patterns Opportunity          Auto-Parallelizable Parallelized
+--------------------------------- ---------- ---------------- -------------------- ------------------- ------------
+3D.c
+|- readinput:40:5
+|  `- readinput:41:7
+|     `- readinput:42:9
+|- writeoutput:66:5
+|  `- writeoutput:67:7
+|     `- writeoutput:68:9
+|- computeTempCPU:95:5
+|  `- computeTempCPU:96:9          x         n/a
+|     `- computeTempCPU:97:13      x         n/a
+|        `- computeTempCPU:98:17   x         forall           simd, multi, offload  x
+|- accuracy:125:5                  x         scalar           simd, multi, offload  x
+`- computeTempOMP:159:9
+   `- computeTempOMP:162:13        x         n/a
+      `- computeTempOMP:164:17     x         n/a
+         `- computeTempOMP:166:21  x         forall           simd, multi, offload  x

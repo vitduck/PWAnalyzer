@@ -1,0 +1,37 @@
+[ INFO  ] ./euler3d_cpu.cpp:123:2: Parallel forall: variable 'variables'
+[ INFO  ] ./euler3d_cpu.cpp:123:2: Parallel forall: variable 'variables'
+[ INFO  ] ./euler3d_cpu.cpp:126:3: Parallel forall: variable 'variables'
+[ INFO  ] ./euler3d_cpu.cpp:353:5: Sequential loop identified
+[ INFO  ] ./euler3d_cpu.cpp:353:5: Loop-carried dependencies inhibit parallelization: variable(s) 'variables'
+[ INFO  ] ./euler3d_cpu.cpp:358:9: Sequential loop identified
+[ INFO  ] ./euler3d_cpu.cpp:358:9: Loop-carried dependencies inhibit parallelization: variable(s) 'variables'
+[ INFO  ] ./euler3d_cpu.cpp:454:3: Sequential loop identified
+[ INFO  ] ./euler3d_cpu.cpp:454:3: Loop-carried dependencies inhibit parallelization: variable(s) 'normals'
+[ INFO  ] ./euler3d_cpu.cpp:457:4: Sequential loop identified
+[ INFO  ] ./euler3d_cpu.cpp:457:4: Loop-carried dependencies inhibit parallelization: variable(s) 'normals'
+[ INFO  ] ./euler3d_cpu.cpp:461:5: Sequential loop identified
+[ INFO  ] ./euler3d_cpu.cpp:461:5: Loop-carried dependencies inhibit parallelization: variable(s) 'normals'
+Loop                             Analyzable Compute patterns Opportunity Auto-Parallelizable Parallelized
+-------------------------------- ---------- ---------------- ----------- ------------------- ------------
+./euler3d_cpu.cpp
+|- dump:95:3
+|- dump:102:3
+|  `- dump:104:4
+|- dump:112:3
+|- initialize_variables:123:2     x         forall                                            x
+|  `- initialize_variables:126:3  x         forall                                            x
+|- compute_step_factor:180:9
+|  `- compute_step_factor:185:2
+|- compute_flux:217:9
+|  `- compute_flux:222:2
+|     `- compute_flux:255:3
+|- time_step:353:5                x         n/a                                               x
+|  `- time_step:358:9             x         n/a                                               x
+|- main:435:3
+|  `- main:438:4
+|     `- main:444:5
+|- main:454:3                     x         n/a
+|  `- main:457:4                  x         n/a
+|     `- main:461:5               x         n/a
+`- main:483:2
+   `- main:490:3
